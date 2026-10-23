@@ -8,20 +8,26 @@ Dominio de producción: https://taniadominguez.com
 
 ```bash
 npm install
-npm run dev      # desarrollo en localhost:4321
+npm run dev      # desarrollo en localhost:4321 (sin /api)
 npm run build    # genera ./dist
 npm run preview  # sirve ./dist
+npx vercel dev   # entorno completo con /api/contact (requiere .env.local)
 ```
 
 ## Estructura
 
 ```
+api/contact.js           función Vercel del formulario (Resend)
 src/pages/               páginas y rutas
 src/content/proyectos/   case studies en Markdown
 src/components/          componentes Astro
-src/layouts/             layout base (SEO, JSON-LD)
+src/layouts/             layouts (base con SEO/JSON-LD, legal)
 src/styles/tokens.css    design tokens
 src/data/site.ts         datos del sitio (nombre, nav, redes)
-public/                  estáticos (robots.txt, favicon, PDF del CV)
+public/                  estáticos (robots.txt, favicon, CV)
 vercel.json              headers de seguridad y caché
 ```
+
+## Variables de entorno
+
+Ver `.env.example`. En producción se definen en Vercel → Settings → Environment Variables.

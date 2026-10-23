@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  updated: string;
+}
+
+const { title, description, updated } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Tania Domínguez`} description={description}>
+  <article class="section container">
+    <h1>{title}</h1>
+    <p class="legal-updated">Última actualización: {updated}</p>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal-updated {
+    color: var(--color-muted);
+    font-size: var(--step--1);
+  }
+  .prose :global(h2) {
+    margin-top: var(--space-l);
+    font-size: var(--step-1);
+  }
+</style>
