@@ -1,0 +1,53 @@
+---
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <nav aria-label="Legal">
+      <ul class="site-footer__list">
+        {site.legal.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <nav aria-label="Redes sociales">
+      <ul class="site-footer__list">
+        {
+          site.social.map((item) => (
+            <li>
+              <a href={item.href} rel="me noopener">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <p class="site-footer__copy">© {year} {site.name}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    font-size: var(--step--1);
+  }
+  .site-footer__inner {
+    display: grid;
+    gap: var(--space-s);
+    padding-block: var(--space-l);
+  }
+  .site-footer__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-m);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-footer__copy {
+    margin: 0;
+    color: var(--color-muted);
+  }
+</style>

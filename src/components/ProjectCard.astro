@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  description: string;
+  href: string;
+}
+
+const { title, category, description, href } = Astro.props;
+---
+
+<article class="card">
+  <p class="card__category">{category}</p>
+  <h3 class="card__title"><a href={href}>{title}</a></h3>
+  <p class="card__text">{description}</p>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    padding: var(--space-m);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .card__category {
+    margin: 0 0 var(--space-xs);
+    font-size: var(--step--1);
+    color: var(--color-muted);
+  }
+  .card__title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  /* Toda la tarjeta es clicable sin duplicar enlaces para lectores de pantalla */
+  .card__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .card:hover .card__title a {
+    text-decoration: underline;
+  }
+  .card__text {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import { site } from '../data/site';
+
+const current = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href="/">{site.name}</a>
+    <nav aria-label="Principal">
+      <ul class="site-header__list">
+        {
+          site.nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={current.startsWith(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li><a href={site.cv} type="application/pdf">CV</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block: var(--space-s);
+  }
+  .site-header__brand {
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .site-header__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-header__list a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .site-header__list a:hover,
+  .site-header__list a[aria-current='page'] {
+    text-decoration: underline;
+    text-underline-offset: 0.35em;
+  }
+</style>
