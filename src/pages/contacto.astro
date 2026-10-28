@@ -42,9 +42,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p id="form-status" class="status" role="status" aria-live="polite"></p>
     </form>
   </section>
-</BaseLayout>
 
-<script>
+  <script>
   const form = document.querySelector<HTMLFormElement>('#contact-form');
   const status = document.querySelector<HTMLElement>('#form-status');
   const submit = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
@@ -79,7 +78,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
     });
   }
-</script>
+  </script>
+</BaseLayout>
 
 <style>
   .form {
