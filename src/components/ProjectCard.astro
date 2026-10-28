@@ -13,6 +13,9 @@ interface Props {
 }
 
 const { title, category, description, href, cover, coverAlt, coverWidth } = Astro.props;
+
+// 1x y 2x, sin superar el ancho real de la imagen
+const widths = [...new Set([coverWidth, Math.min(coverWidth * 2, cover.width)])];
 ---
 
 <article class="card">
@@ -21,7 +24,7 @@ const { title, category, description, href, cover, coverAlt, coverWidth } = Astr
       src={cover}
       alt={coverAlt}
       width={coverWidth}
-      widths={[coverWidth, coverWidth * 2]}
+      widths={widths}
       sizes={`(max-width: ${coverWidth}px) 100vw, ${coverWidth}px`}
       formats={['avif', 'webp']}
       loading="lazy"

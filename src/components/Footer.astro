@@ -1,17 +1,9 @@
 ---
-import type { ImageMetadata } from 'astro';
 import linkedin from '../assets/icons/linkedin.svg';
-import behance from '../assets/icons/behance.svg';
-import medium from '../assets/icons/medium.svg';
-import instagram from '../assets/icons/instagram.svg';
+import mail from '../assets/icons/mail.svg';
 import { site } from '../data/site';
 
-const icons: Record<string, ImageMetadata> = {
-  LinkedIn: linkedin,
-  Behance: behance,
-  Medium: medium,
-  Instagram: instagram,
-};
+const linkedinUrl = site.social.find((s) => s.label === 'LinkedIn')?.href;
 ---
 
 <footer class="site-footer">
@@ -22,17 +14,18 @@ const icons: Record<string, ImageMetadata> = {
       </ul>
     </nav>
 
-    <nav aria-label="Redes sociales">
+    <nav aria-label="Contacto y redes">
       <ul class="social">
-        {
-          site.social.map((item) => (
-            <li>
-              <a href={item.href} aria-label={item.label} rel="me noopener">
-                <img src={icons[item.label].src} width="16" height="16" alt="" />
-              </a>
-            </li>
-          ))
-        }
+        <li>
+          <a href={linkedinUrl} aria-label="LinkedIn" rel="me noopener">
+            <img src={linkedin.src} width="16" height="16" alt="" />
+          </a>
+        </li>
+        <li>
+          <a href="/contacto/" aria-label="Contacto">
+            <img src={mail.src} width="16" height="16" alt="" />
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
