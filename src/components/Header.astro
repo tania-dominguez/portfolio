@@ -1,14 +1,30 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/img/logo.png';
+import menuIcon from '../assets/icons/menu.svg';
 import { site } from '../data/site';
 
 const current = Astro.url.pathname;
 ---
 
 <header class="site-header">
-  <div class="container site-header__inner">
-    <a class="site-header__brand" href="/">{site.name}</a>
-    <nav aria-label="Principal">
-      <ul class="site-header__list">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/" aria-label="Tania Domínguez, ir al inicio">
+      <Image src={logo} width={65} widths={[65, 130]} sizes="65px" alt="" loading="eager" />
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      aria-label="Menú"
+    >
+      <img src={menuIcon.src} width="22" height="22" alt="" />
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Principal">
+      <ul>
         {
           site.nav.map((item) => (
             <li>
@@ -18,44 +34,109 @@ const current = Astro.url.pathname;
             </li>
           ))
         }
-        <li><a href={site.cv} type="application/pdf">CV</a></li>
+        <li>
+          <a href={site.cv} type="application/pdf">CV<span class="visually-hidden"> (PDF)</span></a>
+        </li>
       </ul>
     </nav>
   </div>
 </header>
 
-<style>
-  .site-header {
-    border-bottom: 1px solid var(--color-border);
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('#site-nav');
+
+  if (toggle && nav) {
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
   }
+</script>
+
+<style>
   .site-header__inner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-s);
-    padding-block: var(--space-s);
+    gap: var(--space-xs) var(--space-s);
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: 10px;
   }
+
   .site-header__brand {
-    font-weight: 700;
-    color: var(--color-text);
-    text-decoration: none;
+    display: block;
+    width: 65px;
   }
-  .site-header__list {
+
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+
+  .site-nav ul {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-m);
+    gap: var(--space-xs) var(--space-l);
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .site-header__list a {
-    color: var(--color-text);
+
+  .site-nav a {
+    color: var(--color-ink);
     text-decoration: none;
   }
-  .site-header__list a:hover,
-  .site-header__list a[aria-current='page'] {
+
+  .site-nav a:hover,
+  .site-nav a[aria-current='page'] {
     text-decoration: underline;
     text-underline-offset: 0.35em;
+  }
+
+  /* El diseño del frame a 1024px muestra el menú plegado */
+  @media (max-width: 64rem) {
+    .menu-toggle {
+      display: inline-flex;
+    }
+
+    .site-nav {
+      flex-basis: 100%;
+    }
+
+    .site-nav ul {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .site-nav a {
+      display: block;
+      padding-block: 0.75rem;
+    }
+
+    :global(.js) .site-nav:not(.is-open) {
+      display: none;
+    }
   }
 </style>

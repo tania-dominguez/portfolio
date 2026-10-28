@@ -1,11 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-
-const proyectos = (await getCollection('proyectos', ({ data }) => !data.draft)).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+import ProjectList from '../components/ProjectList.astro';
 ---
 
 <BaseLayout
@@ -14,17 +9,6 @@ const proyectos = (await getCollection('proyectos', ({ data }) => !data.draft)).
 >
   <section class="section container">
     <h1>Portfolio</h1>
-    <div class="grid">
-      {
-        proyectos.map((p) => (
-          <ProjectCard
-            title={p.data.title}
-            category={p.data.category}
-            description={p.data.description}
-            href={`/${p.id}/`}
-          />
-        ))
-      }
-    </div>
   </section>
+  <ProjectList />
 </BaseLayout>

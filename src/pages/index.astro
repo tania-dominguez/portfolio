@@ -1,35 +1,71 @@
 ---
-import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-
-const proyectos = (await getCollection('proyectos', ({ data }) => !data.draft)).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+import ProjectList from '../components/ProjectList.astro';
+import retrato from '../assets/img/tania-dominguez.png';
 ---
 
 <BaseLayout title="Tania Domínguez | Diseñadora UX/UI e ilustración en Alicante">
-  <section class="section container">
-    <h1>¡Hola! Soy Tania Domínguez, diseñadora UX/UI</h1>
-    <p>
-      Transformo ideas en experiencias digitales intuitivas y estéticamente atractivas, desde el
-      concepto hasta la implementación.
-    </p>
-  </section>
+  <section class="hero">
+    <div class="hero__text">
+      <h1>¡Hola! Soy Tania Domínguez, diseñadora UX/UI</h1>
+      <p>
+        Transformo ideas en experiencias digitales intuitivas y estéticamente atractivas, desde el
+        concepto hasta la implementación.
+      </p>
+      <a class="btn btn--solid" href="#proyectos">Ver proyectos</a>
+    </div>
 
-  <section class="section container" aria-labelledby="proyectos-titulo">
-    <h2 id="proyectos-titulo">Proyectos</h2>
-    <div class="grid">
-      {
-        proyectos.map((p) => (
-          <ProjectCard
-            title={p.data.title}
-            category={p.data.category}
-            description={p.data.description}
-            href={`/${p.id}/`}
-          />
-        ))
-      }
+    <div class="hero__media">
+      <Picture
+        src={retrato}
+        alt="Ilustración de Tania Domínguez trabajando con un portátil"
+        width={390}
+        widths={[390, 780]}
+        sizes="(max-width: 52rem) 100vw, 390px"
+        formats={['avif', 'webp']}
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
   </section>
+
+  <section id="proyectos" aria-labelledby="proyectos-titulo">
+    <h2 id="proyectos-titulo" class="visually-hidden">Proyectos</h2>
+    <ProjectList />
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 24.3rem) minmax(0, 24.4rem);
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-l) 4.9rem;
+    width: min(100% - 2rem, var(--container));
+    margin-inline: auto;
+    padding-top: 10px;
+  }
+
+  .hero__text h1 {
+    max-width: 8em;
+    margin-bottom: var(--space-m);
+  }
+
+  .hero__text p {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__media {
+    justify-self: center;
+    max-width: 100%;
+  }
+
+  @media (max-width: 52rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

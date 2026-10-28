@@ -1,20 +1,30 @@
-/* Design tokens. Valores provisionales: se sustituyen al replicar el diseño real. */
+/* Design tokens extraídos del Figma "Portfolio" (frame Home, 1024w). */
 :root {
+  /* Color (Acadia, White Rock, Raw Umber + dorado del botón principal) */
+  --color-ink: #120e03;
   --color-bg: #ffffff;
-  --color-surface: #f6f6f7;
-  --color-text: #111111;
-  --color-muted: #555555;
-  --color-border: #e3e3e6;
-  --color-accent: #3b2bd9;
+  --color-surface: #e8e2d1;
+  --color-accent: #7d6017;
+  --color-brand: #b19141;
+  --color-brand-ink: #ffffff; /* ratio 3:1 sobre --color-brand; con --color-ink sube a 6,4:1 */
+  --color-chip: rgb(255 255 255 / 0.47);
+  --color-on-dark: #ffffff;
+  --color-text: var(--color-ink);
+  --color-muted: #5c5648;
+  --color-border: #cfc6ab;
 
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* Tipografía */
+  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Libre Franklin', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
-  --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
-  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
-  --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
-  --step-2: clamp(1.563rem, 1.35rem + 1vw, 2.1rem);
-  --step-3: clamp(2rem, 1.5rem + 2.4vw, 3.2rem);
+  --text-s: 0.8125rem; /* 13 */
+  --text-footer: 0.875rem; /* 14 */
+  --text-btn: 0.9375rem; /* 15 */
+  --text-m: 1rem; /* 16 */
+  --text-title: 2rem; /* 32 */
+  --text-hero: clamp(2rem, 1.2rem + 2.2vw, 2.5rem); /* 32 → 40 */
 
+  /* Espaciado */
   --space-xs: 0.5rem;
   --space-s: 1rem;
   --space-m: 1.5rem;
@@ -22,10 +32,11 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
-  --radius: 12px;
-  --container: 72rem;
+  --radius: 3px;
+  --container: 64rem; /* 1024 */
   --measure: 65ch;
 
+  /* Movimiento */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-fast: 150ms;
   --duration-base: 300ms;
