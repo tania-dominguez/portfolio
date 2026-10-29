@@ -19,6 +19,7 @@ Redactados el 24-10-2026 para el dominio nuevo (RGPD/LOPDGDD). Sin cookies de an
 Archivo "Portfolio" (cuenta tdominguezvi@uoc.edu): https://www.figma.com/design/nGzxKhjDuSwHnJczXHVzq8/Portfolio — Home: node 6201-3077 (frame 1024w). Tokens en `src/styles/tokens.css` (Acadia #120E03, White Rock #E8E2D1, Raw Umber #7D6017; DM Serif Display + Libre Franklin, autoalojadas con @fontsource).
 - El shell de esta sesión no descarga assets de figma.com (proxy 403): los assets se adjuntan en el chat y se copian a `src/assets/`.
 - Header: lista de secciones en escritorio; hamburguesa (CSS, sin SVG) hasta 768px. Footer: solo LinkedIn y correo (→ /contacto/).
+- Hero móvil (≤52rem): todo centrado, orden título → imagen → descripción → botón. El DOM sigue ese orden (lectura = visual); en escritorio la rejilla lo recoloca en dos columnas.
 - Logo: SVG vectorial en `src/assets/img/logo.svg` (65×52).
 - Favicon: marca TD en dos colores sobre fondo blanco, recortada con ~8% de margen a partir de un PNG de 512px. Archivos en `public/`: `favicon.ico` (16/32/48), `icon-192.png`, `apple-touch-icon.png` (180). Si hay un SVG vectorial del icono, sustituirlo.
 - Botón principal: fondo #7D6017 con texto blanco (5,9:1, AA), hover #120E03. Se sustituye el #B19141 del Figma (blanco sobre él = 3:1, no cumple AA). Decisión de la titular.

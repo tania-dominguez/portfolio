@@ -7,14 +7,7 @@ import retrato from '../assets/img/tania-dominguez.png';
 
 <BaseLayout title="Tania Domínguez | Diseñadora UX/UI e ilustración en Alicante">
   <section class="hero">
-    <div class="hero__text">
-      <h1>¡Hola! Soy Tania Domínguez, diseñadora UX/UI</h1>
-      <p>
-        Transformo ideas en experiencias digitales intuitivas y estéticamente atractivas, desde el
-        concepto hasta la implementación.
-      </p>
-      <a class="btn btn--solid" href="#proyectos">Ver proyectos</a>
-    </div>
+    <h1>¡Hola! Soy Tania Domínguez, diseñadora UX/UI</h1>
 
     <div class="hero__media">
       <Picture
@@ -29,6 +22,13 @@ import retrato from '../assets/img/tania-dominguez.png';
         decoding="async"
       />
     </div>
+
+    <p class="hero__lead">
+      Transformo ideas en experiencias digitales intuitivas y estéticamente atractivas, desde el
+      concepto hasta la implementación.
+    </p>
+
+    <a class="btn btn--solid hero__cta" href="#proyectos">Ver proyectos</a>
   </section>
 
   <section id="proyectos" aria-labelledby="proyectos-titulo">
@@ -38,34 +38,67 @@ import retrato from '../assets/img/tania-dominguez.png';
 </BaseLayout>
 
 <style>
+  /* Móvil: una columna centrada. Orden: título, imagen, descripción, botón. */
   .hero {
     display: grid;
-    grid-template-columns: minmax(0, 24.3rem) minmax(0, 24.4rem);
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-l) 4.9rem;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
     width: min(100% - 2rem, var(--container));
     margin-inline: auto;
-    padding-top: 10px;
+    padding-top: var(--space-m);
   }
 
-  .hero__text h1 {
+  .hero h1 {
     max-width: 8em;
     margin-bottom: var(--space-m);
   }
 
-  .hero__text p {
-    margin-bottom: 1.5rem;
-  }
-
   .hero__media {
-    justify-self: center;
     max-width: 100%;
+    margin-bottom: var(--space-m);
   }
 
-  @media (max-width: 52rem) {
+  .hero__lead {
+    margin-inline: auto;
+    margin-bottom: var(--space-m);
+  }
+
+  /* Escritorio: texto a la izquierda (centrado en vertical) e imagen a la derecha. */
+  @media (min-width: 52.0625rem) {
     .hero {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: minmax(0, 24.3rem) minmax(0, 24.4rem);
+      grid-template-rows: 1fr auto auto auto 1fr;
+      justify-content: center;
+      justify-items: start;
+      column-gap: 4.9rem;
+      padding-top: 10px;
+      text-align: left;
+    }
+
+    .hero h1 {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .hero__lead {
+      grid-column: 1;
+      grid-row: 3;
+      margin-inline: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero__cta {
+      grid-column: 1;
+      grid-row: 4;
+    }
+
+    .hero__media {
+      grid-column: 2;
+      grid-row: 1 / span 5;
+      align-self: center;
+      justify-self: center;
+      margin-bottom: 0;
     }
   }
 </style>
