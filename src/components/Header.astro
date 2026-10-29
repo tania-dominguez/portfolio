@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../assets/img/logo.png';
+import logo from '../assets/img/logo.svg';
 import { site } from '../data/site';
 
 const current = Astro.url.pathname;
@@ -9,7 +8,7 @@ const current = Astro.url.pathname;
 <header class="site-header">
   <div class="site-header__inner">
     <a class="site-header__brand" href="/" aria-label="Tania Domínguez, ir al inicio">
-      <Image src={logo} width={65} alt="" loading="eager" />
+      <img src={logo.src} width="65" height="52" alt="" />
     </a>
 
     <button
