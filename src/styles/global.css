@@ -124,12 +124,12 @@ a {
 .btn--solid {
   padding: 0.9375rem 1.875rem;
   font-size: var(--text-m);
-  color: var(--color-brand-ink);
-  background: var(--color-brand);
+  color: var(--color-on-accent);
+  background: var(--color-accent);
 }
 
 .btn--solid:hover {
-  background: var(--color-accent);
+  background: var(--color-ink);
 }
 
 .btn--outline {
@@ -139,7 +139,7 @@ a {
 }
 
 .btn--outline:hover {
-  color: var(--color-brand-ink);
+  color: var(--color-on-accent);
   background: var(--color-accent);
 }
 

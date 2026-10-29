@@ -16,11 +16,11 @@ Migración de WordPress a sitio estático en Vercel. Dominio nuevo: **taniadomin
 Redactados el 24-10-2026 para el dominio nuevo (RGPD/LOPDGDD). Sin cookies de analítica: si se añade analítica, actualizar la política de cookies y el banner. Titular identificada solo por nombre y formulario; si ofrece servicios profesionales, valorar añadir NIF y domicilio. Revisión legal profesional recomendada.
 
 ## Diseño (Figma)
-Archivo "Portfolio" (cuenta tdominguezvi@uoc.edu): https://www.figma.com/design/nGzxKhjDuSwHnJczXHVzq8/Portfolio — Home: node 6201-3077 (frame 1024w). Tokens en `src/styles/tokens.css` (Acadia #120E03, White Rock #E8E2D1, Raw Umber #7D6017, dorado #B19141; DM Serif Display + Libre Franklin, autoalojadas con @fontsource).
+Archivo "Portfolio" (cuenta tdominguezvi@uoc.edu): https://www.figma.com/design/nGzxKhjDuSwHnJczXHVzq8/Portfolio — Home: node 6201-3077 (frame 1024w). Tokens en `src/styles/tokens.css` (Acadia #120E03, White Rock #E8E2D1, Raw Umber #7D6017; DM Serif Display + Libre Franklin, autoalojadas con @fontsource).
 - El shell de esta sesión no descarga assets de figma.com (proxy 403): los assets se adjuntan en el chat y se copian a `src/assets/`.
 - Header: lista de secciones en escritorio; hamburguesa (CSS, sin SVG) hasta 768px. Footer: solo LinkedIn y correo (→ /contacto/).
 - Logo solo existe a 65px (1x): pedir versión 2x o SVG.
-- Pendiente de decidir: contraste del botón principal (blanco sobre #B19141 = 3:1, no cumple AA; con texto #120E03 = 6,4:1).
+- Botón principal: fondo #7D6017 con texto blanco (5,9:1, AA), hover #120E03. Se sustituye el #B19141 del Figma (blanco sobre él = 3:1, no cumple AA). Decisión de la titular.
 - Trabajar en ramas y verificar el preview de Vercel antes de fusionar a main.
 
 ## Pendiente

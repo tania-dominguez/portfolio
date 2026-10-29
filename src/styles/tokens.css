@@ -5,8 +5,7 @@
   --color-bg: #ffffff;
   --color-surface: #e8e2d1;
   --color-accent: #7d6017;
-  --color-brand: #b19141;
-  --color-brand-ink: #ffffff; /* ratio 3:1 sobre --color-brand; con --color-ink sube a 6,4:1 */
+  --color-on-accent: #ffffff; /* blanco sobre --color-accent: 5,9:1 (AA) */
   --color-chip: rgb(255 255 255 / 0.47);
   --color-on-dark: #ffffff;
   --color-text: var(--color-ink);
