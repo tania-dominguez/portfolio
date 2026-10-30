@@ -1,13 +1,139 @@
 ---
+import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import retrato from '../assets/img/tania-dominguez-about.jpg';
 ---
 
 <BaseLayout
   title="Sobre mí | Tania Domínguez"
-  description="Conoce a Tania Domínguez, diseñadora UX/UI en Alicante especializada en sistemas de diseño y producto digital."
+  description="Conoce a Tania Domínguez, diseñadora UX/UI en Alicante. Su experiencia en prensa digital y diseño de producto."
 >
-  <section class="section container">
+  <header class="about-heading">
     <h1>Sobre mí</h1>
-    <p>Contenido pendiente de migrar desde WordPress.</p>
-  </section>
+  </header>
+
+  <article class="about container" aria-labelledby="about-title">
+    <h2 id="about-title" class="visually-hidden">Sobre Tania</h2>
+
+    <Picture
+      class="about__portrait"
+      src={retrato}
+      alt="Tania Domínguez trabajando frente a su ordenador"
+      width={419}
+      widths={[274, 419, 838]}
+      sizes="(max-width: 40rem) 95vw, 419px"
+      formats={['avif', 'webp']}
+      loading="lazy"
+      decoding="async"
+    />
+
+    <div class="about__copy">
+      <section aria-labelledby="hello-title">
+        <h2 id="hello-title">¡Hola!</h2>
+        <p>
+          Mi nombre es <strong>Tania Domínguez y soy la alicantina</strong> que alimenta este espacio,
+          un lugar donde plasmo y difundo mis trabajos relacionados con el mundo del diseño.
+        </p>
+        <p>
+          Con <strong>15 años de experiencia a mis espaldas trabajando para el sector de Prensa Digital</strong>
+          en España, puedo decir que siempre he trabajado aunque paralelamente, en estrecha relación con
+          el diseño, lo que me ha permitido desarrollar una <strong>visión analítica respecto al diseño,
+          estar al día de las últimas tendencias, aprender sobre principios compositivos</strong>, etc.
+        </p>
+      </section>
+
+      <section aria-labelledby="background-title">
+        <h2 id="background-title">Background</h2>
+        <p>
+          Mi día a día como diseñadora UX/UI es un constante aprendizaje, aportando o llevando a cabo
+          soluciones creativas. Con background de perfil técnico he realizado durante muchos años tareas
+          que involucran a los equipos de <strong>Diseño, Analítica, SEO, Desarrollo y Sistemas</strong>.
+          Gracias a estas sinergias tengo una visión amplia de cómo se estructura el trabajo en los
+          diferentes departamentos, lo cual me ha permitido ampliar mis conocimientos en cuanto a flujos
+          de trabajo y metodologías y ponerme en la piel de los usuarios de todas las aplicaciones y
+          servicios a los que he ido dando soporte este tiempo.
+        </p>
+        <p>
+          Como diseñadora de UX/UI, evalúo, investigo y desarrollo soluciones poniendo al usuario y sus
+          necesidades en el centro del problema.
+        </p>
+      </section>
+
+      <section aria-labelledby="help-title">
+        <h2 id="help-title">¿En qué te puedo ayudar?</h2>
+        <p>
+          Creatividades, sistemas de diseño, implementaciones de diseños en WordPress, diseño editorial
+          digital, etc.
+        </p>
+        <p>
+          Actualmente compagino estudios con trabajo y <strong>sigo formándome en competencias mixtas en
+          Front End / UX / UI Design</strong> con el objetivo de que me ayuden a seguir avanzando en mi
+          roadmap como diseñadora, para así apostar por mi carrera profesional y tener la oportunidad de
+          asumir nuevos retos profesionales.
+        </p>
+      </section>
+    </div>
+  </article>
 </BaseLayout>
+
+<style>
+  .about-heading {
+    padding: 0.625rem 1rem;
+    text-align: center;
+    background: var(--color-surface);
+  }
+
+  .about-heading h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-s);
+    padding-block: var(--space-m) var(--space-2xl);
+  }
+
+  .about__portrait {
+    display: block;
+    width: 95%;
+    max-width: 26.2rem;
+    height: auto;
+    margin-top: 0.625rem;
+  }
+
+  .about__copy {
+    width: 100%;
+    padding-inline: 0.625rem;
+  }
+
+  .about__copy section + section {
+    margin-top: 3rem;
+  }
+
+  .about__copy h2 {
+    margin-bottom: var(--space-s);
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .about__copy p {
+    max-width: none;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .about__copy p + p {
+    margin-top: var(--space-s);
+  }
+
+  @media (min-width: 48.0625rem) {
+    .about {
+      width: min(100% - 2rem, 53.125rem);
+      padding-top: 3.2rem;
+    }
+  }
+</style>
