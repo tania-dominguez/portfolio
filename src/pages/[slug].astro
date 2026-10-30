@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import RevistaRsc from '../components/RevistaRsc.astro';
 
 export async function getStaticPaths() {
   const proyectos = await getCollection('proyectos', ({ data }) => !data.draft);
@@ -12,11 +13,14 @@ const { Content } = await render(entry);
 ---
 
 <BaseLayout title={`${entry.data.title} | Tania Domínguez`} description={entry.data.description}>
-  <article class="section container">
-    <p>{entry.data.category}</p>
-    <h1>{entry.data.title}</h1>
-    <div class="prose">
-      <Content />
-    </div>
-  </article>
+  {entry.id === 'revista-rsc' ? (
+    <RevistaRsc />
+  ) : (
+    <article class="section container">
+      <p>{entry.data.category}</p>
+      <h1>{entry.data.title}</h1>
+      <div class="prose"><Content /></div>
+    </article>
+  )}
 </BaseLayout>
+
