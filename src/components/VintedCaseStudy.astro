@@ -76,17 +76,16 @@ import hero from '../assets/img/vinted-collections.png';
 
 <style>
   .vinted-case-study { color: var(--color-ink); }
-  :global(body:has(.vinted-case-study) .site-header__inner) { max-width: none; padding: 14px 10px; }
   .vinted-hero {
     display: grid;
-    min-height: 35.5rem;
-    padding: 1.5rem 1rem;
+    min-height: 24rem;
+    padding: 2rem 1rem;
     place-items: center;
     background: var(--color-surface);
   }
   .vinted-hero__trigger {
     display: block;
-    width: min(100%, 48rem);
+    width: min(100%, 31rem);
     padding: 0;
     border: 0;
     background: transparent;
@@ -95,21 +94,21 @@ import hero from '../assets/img/vinted-collections.png';
   .vinted-hero__trigger picture { display: block; width: 100%; }
   .vinted-hero__trigger :global(img) { display: block; width: 100%; height: auto; }
   .vinted-intro {
-    width: min(100% - 2rem, 52rem);
+    width: min(100% - 2rem, 43.25rem);
     margin-inline: auto;
-    padding-block: 2rem 3.5rem;
+    padding-block: 4.5rem;
     text-align: center;
   }
-  .vinted-intro h1 { margin-bottom: 1.5rem; font-size: clamp(2.25rem, 3.8vw, 3rem); }
-  .vinted-intro p { max-width: 58rem; margin: 0 auto; font-size: 1.2rem; line-height: 1.5; }
+  .vinted-intro h1 { margin-bottom: 1.5rem; font-size: 2.5rem; }
+  .vinted-intro p { max-width: none; margin: 0; line-height: 1.5; }
   .vinted-intro strong { font-weight: 700; }
   .vinted-cta {
     display: inline-flex;
-    min-height: 3.25rem;
+    min-height: 3rem;
     align-items: center;
     justify-content: center;
-    margin-top: 2rem;
-    padding: .8rem 2rem;
+    margin-top: 1.5rem;
+    padding: .9375rem 1.875rem;
     border-radius: 3px;
     color: #fff;
     background: #b19141;
@@ -120,10 +119,13 @@ import hero from '../assets/img/vinted-collections.png';
   .vinted-cta:hover { background: var(--color-accent); }
   .vinted-project-nav {
     display: grid;
+    width: min(100% - 2rem, 43.25rem);
+    margin-inline: auto;
     grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
     align-items: center;
-    gap: 1.5rem;
-    padding-block: 1.25rem 2.5rem;
+    gap: 1rem;
+    padding-block: 1rem 2rem;
+    border-top: 1px solid var(--color-border);
   }
   .vinted-project-nav a {
     display: flex;
@@ -131,22 +133,22 @@ import hero from '../assets/img/vinted-collections.png';
     align-items: center;
     gap: .875rem;
     color: var(--color-accent);
-    font-size: .95rem;
+    font-size: .8rem;
     text-decoration: none;
   }
   .vinted-project-nav a:hover > span:last-child,
   .vinted-project-nav a:hover > span:first-child { text-decoration: underline; text-underline-offset: .2em; }
-  .vinted-project-nav small { display: block; margin-bottom: .2rem; font-size: .78rem; text-transform: uppercase; }
+  .vinted-project-nav small { display: block; margin-bottom: .2rem; font-size: .65rem; text-transform: uppercase; }
   .vinted-project-nav__arrow {
     display: grid;
-    flex: 0 0 2.25rem;
-    width: 2.25rem;
-    height: 2.25rem;
+    flex: 0 0 2rem;
+    width: 2rem;
+    height: 2rem;
     place-items: center;
     border-radius: 50%;
     color: #fff;
     background: #b19141;
-    font-size: 1.45rem;
+    font-size: 1.2rem;
     line-height: 1;
   }
   .vinted-project-nav__divider { width: 1px; height: 3rem; background: var(--color-border); }
@@ -179,22 +181,20 @@ import hero from '../assets/img/vinted-collections.png';
     cursor: pointer;
   }
   @media (max-width: 40rem) {
-    .vinted-hero { min-height: 32rem; padding-inline: 1rem; }
+    .vinted-hero { min-height: 24rem; padding: 2rem 1rem; }
     .vinted-hero__trigger { width: min(100%, 24rem); }
     .vinted-intro { width: min(100% - 2.75rem, 30rem); padding-block: 1.5rem 2rem; }
-    .vinted-intro h1 { margin-bottom: .9rem; font-size: 2.25rem; }
-    .vinted-intro p { font-size: 1rem; line-height: 1.5; }
+    .vinted-intro h1 { margin-bottom: .75rem; font-size: 2rem; }
+    .vinted-intro p { font-size: .875rem; }
     .vinted-cta { margin-top: 1.5rem; }
-    .vinted-project-nav { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .75rem; padding-block: .75rem 1.5rem; }
+    .vinted-project-nav { width: min(100% - 2.75rem, 30rem); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .75rem; }
     .vinted-project-nav__divider { display: none; }
     .vinted-project-nav a { gap: .4rem; font-size: .75rem; }
     .vinted-project-nav small { font-size: .65rem; }
     .vinted-project-nav__arrow { flex-basis: 1.9rem; width: 1.9rem; height: 1.9rem; font-size: 1.2rem; }
     .vinted-lightbox { padding-inline: .75rem; }
   }
-  @media (min-width: 48.01rem) {
-    :global(body:has(.vinted-case-study) .site-header__inner) { padding-block: 22px; }
-  }
 </style>
+
 
 
