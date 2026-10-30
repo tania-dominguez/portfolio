@@ -25,6 +25,12 @@ Archivo "Portfolio" (cuenta tdominguezvi@uoc.edu): https://www.figma.com/design/
 - Botón principal: fondo #7D6017 con texto blanco (5,9:1, AA), hover #120E03. Se sustituye el #B19141 del Figma (blanco sobre él = 3:1, no cumple AA). Decisión de la titular.
 - Trabajar en ramas y verificar el preview de Vercel antes de fusionar a main.
 
+## Case studies
+- Componentes compartidos: `ZoomImage` (imagen clicable → visor), `Lightbox` (un `<dialog>` por página, recorre todos los `[data-lightbox-src]`), `ImageComparison` (before/after con `input[type=range]`, accesible por teclado), `CaseNav`. Cualquier imagen nueva de un case study debe usar `ZoomImage`.
+- `RevistaRsc.astro` y `DesignSystem42.astro` se montan desde `src/pages/[slug].astro`.
+- 42DS: imágenes provisionales (PLACEHOLDER) en `src/assets/img/42ds/`; sustituir por las reales con el mismo nombre y revisar los `alt` en `DesignSystem42.astro`.
+- Límite de llamadas del MCP de Figma (plan Starter) alcanzado el 30-10-2026: usar `get_metadata` guardado o capturas en el chat.
+
 ## Pendiente
 - Replicar el resto de páginas del Figma (home hecha): case studies, sobre mí, contacto, versión móvil.
 - Migrar contenido del XML exportado a Markdown; optimizar imágenes con `astro:assets`; fuentes woff2 autoalojadas.

@@ -1,0 +1,130 @@
+---
+// Visor de imágenes. Se abre desde cualquier elemento con data-lightbox-src,
+// data-lightbox-alt y data-lightbox-caption (ver ZoomImage y ImageComparison).
+---
+
+<dialog class="lightbox" aria-label="Visor de imágenes del proyecto">
+  <button class="lightbox__close" type="button" aria-label="Cerrar visor">×</button>
+  <img class="lightbox__image" src="" alt="" />
+  <p class="lightbox__caption"></p>
+  <nav class="lightbox__controls" aria-label="Navegación de imágenes">
+    <button class="lightbox__previous" type="button" aria-label="Imagen anterior">← Anterior</button>
+    <span class="lightbox__count" aria-live="polite"></span>
+    <button class="lightbox__next" type="button" aria-label="Imagen siguiente">Siguiente →</button>
+  </nav>
+</dialog>
+
+<script>
+  const lightbox = document.querySelector<HTMLDialogElement>('.lightbox');
+  const lightboxImage = lightbox?.querySelector<HTMLImageElement>('.lightbox__image');
+  const lightboxCaption = lightbox?.querySelector<HTMLElement>('.lightbox__caption');
+  const lightboxCount = lightbox?.querySelector<HTMLElement>('.lightbox__count');
+  const triggers = Array.from(document.querySelectorAll<HTMLElement>('[data-lightbox-src]'));
+  let activeImage = 0;
+
+  const showImage = (index: number) => {
+    if (!lightbox || !lightboxImage || !lightboxCaption || !lightboxCount || triggers.length === 0) return;
+    activeImage = (index + triggers.length) % triggers.length;
+    const trigger = triggers[activeImage];
+    lightboxImage.src = trigger.dataset.lightboxSrc ?? '';
+    lightboxImage.alt = trigger.dataset.lightboxAlt ?? '';
+    lightboxCaption.textContent = trigger.dataset.lightboxCaption ?? '';
+    lightboxCount.textContent = `${activeImage + 1} / ${triggers.length}`;
+  };
+
+  triggers.forEach((trigger, index) => {
+    trigger.addEventListener('click', () => {
+      showImage(index);
+      lightbox?.showModal();
+      lightbox?.querySelector<HTMLButtonElement>('.lightbox__close')?.focus();
+    });
+  });
+
+  lightbox?.querySelector('.lightbox__close')?.addEventListener('click', () => lightbox.close());
+  lightbox?.querySelector('.lightbox__previous')?.addEventListener('click', () => showImage(activeImage - 1));
+  lightbox?.querySelector('.lightbox__next')?.addEventListener('click', () => showImage(activeImage + 1));
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+  lightbox?.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') showImage(activeImage - 1);
+    if (event.key === 'ArrowRight') showImage(activeImage + 1);
+  });
+</script>
+
+<style>
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    width: min(96vw, 76rem);
+    max-width: none;
+    max-height: 94dvh;
+    margin: auto;
+    padding: 3rem 1.5rem 1.25rem;
+    overflow: auto;
+    border: 0;
+    color: var(--color-ink);
+    background: #fff;
+    box-shadow: 0 1rem 4rem #0005;
+  }
+
+  .lightbox[open] {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    justify-items: center;
+    gap: 0.75rem;
+  }
+
+  .lightbox::backdrop {
+    background: rgb(18 14 3 / 0.88);
+  }
+
+  .lightbox__image {
+    width: 100%;
+    height: min(76dvh, 52rem);
+    object-fit: contain;
+  }
+
+  .lightbox__caption {
+    margin: 0;
+    text-align: center;
+    font-size: 0.875rem;
+  }
+
+  .lightbox__close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    border: 0;
+    color: var(--color-ink);
+    background: transparent;
+    font: 2rem/1 var(--font-body);
+    cursor: pointer;
+  }
+
+  .lightbox__controls {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .lightbox__controls button {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-accent);
+    background: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .lightbox__count {
+    font-size: 0.8rem;
+  }
+</style>
