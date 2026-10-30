@@ -1,0 +1,81 @@
+---
+interface Link {
+  title: string;
+  href: string;
+}
+
+interface Props {
+  prev?: Link;
+  next?: Link;
+}
+
+const { prev, next } = Astro.props;
+---
+
+<nav class="case-nav" aria-label="Navegación entre proyectos">
+  {
+    prev ? (
+      <a class="case-nav__prev" href={prev.href} rel="prev">
+        <span aria-hidden="true">←</span>
+        <span>
+          <small>Anterior</small>
+          {prev.title}
+        </span>
+      </a>
+    ) : (
+      <span />
+    )
+  }
+  {
+    next && (
+      <a class="case-nav__next" href={next.href} rel="next">
+        <span>
+          <small>Siguiente</small>
+          {next.title}
+        </span>
+        <span aria-hidden="true">→</span>
+      </a>
+    )
+  }
+</nav>
+
+<style>
+  .case-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(100% - 2rem, 43.25rem);
+    margin-inline: auto;
+    padding-block: 1rem 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .case-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+
+  .case-nav__next {
+    text-align: right;
+  }
+
+  .case-nav small {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+  }
+
+  .case-nav a > span[aria-hidden] {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 40rem) {
+    .case-nav {
+      width: min(100% - 2.75rem, 30rem);
+    }
+  }
+</style>

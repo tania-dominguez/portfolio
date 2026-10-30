@@ -1,0 +1,165 @@
+---
+import ZoomImage from './ZoomImage.astro';
+import ImageComparison from './ImageComparison.astro';
+import Lightbox from './Lightbox.astro';
+import CaseNav from './CaseNav.astro';
+import hero from '../assets/img/42ds.png';
+import galleryMain from '../assets/img/42ds/galeria-principal.png';
+import gallery1 from '../assets/img/42ds/galeria-1.png';
+import gallery2 from '../assets/img/42ds/galeria-2.png';
+import gallery3 from '../assets/img/42ds/galeria-3.png';
+import gallery4 from '../assets/img/42ds/galeria-4.png';
+import before from '../assets/img/42ds/before.png';
+import after from '../assets/img/42ds/after.png';
+import results from '../assets/img/42ds/resultados.png';
+
+// Revisar los textos alternativos cuando se sustituyan las imágenes provisionales.
+const thumbs = [
+  { image: gallery1, alt: 'Componentes de formularios del 42DS Design System en Figma', caption: 'Componentes de formularios del 42DS' },
+  { image: gallery2, alt: 'Ventanas modales del 42DS Design System en Figma', caption: 'Ventanas modales del 42DS' },
+  { image: gallery3, alt: 'Estilos tipográficos del 42DS Design System en Figma', caption: 'Estilos tipográficos del 42DS' },
+  { image: gallery4, alt: 'Guía de estilos de color del 42DS Design System en Figma', caption: 'Guía de color del 42DS' },
+];
+---
+
+<article class="case-study" aria-labelledby="case-title">
+  <section class="case-hero" aria-label="Interfaz del 42DS Design System">
+    <ZoomImage image={hero} alt="Interfaz del 42DS Design System mostrada en un monitor de escritorio" caption="Interfaz del 42DS Design System" width={717} widths={[320, 640, 717]} sizes="(max-width: 40rem) calc(100vw - 2rem), 45rem" priority />
+  </section>
+
+  <div class="case-intro">
+    <h1 id="case-title">42DS Design System</h1>
+    <p>Construcción del Sistema de Diseño multimarca del grupo de prensa español Prensa Ibérica, con el fin de unificar y agilizar el diseño de sus más de 25 publicaciones actuales entre revistas y periódicos, con ediciones tanto en papel como digital que se distribuyen y se publican a nivel nacional.</p>
+  </div>
+
+  <section class="project container" aria-labelledby="project-title">
+    <h2 id="project-title">Proyecto</h2>
+    <div class="project__grid">
+      <div class="project__text">
+        <h3>Desafío</h3>
+        <p>Construir un sistema de diseño que permitiera la personalización para reflejar la identidad única de cada periódico y/o revista en sus ediciones digitales, al tiempo que proporcionara componentes unificados que facilitaran la navegación y el reconocimiento del grupo como una entidad.</p>
+        <h3>Objetivo</h3>
+        <p>Unificar la identidad digital de las múltiples marcas individuales de los periódicos y revistas de grupo, manteniendo la singularidad y personalidad de cada periódico.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Mi rol</dt><dd>UX/UI Designer</dd></div>
+        <div><dt>Tareas</dt><dd>Research, Benchmark, UX/UI Design</dd></div>
+        <div><dt>Herramientas</dt><dd>Figma, Zero Height</dd></div>
+        <div><dt>Equipo</dt><dd>8 diseñadores (Co-creación)</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section-wide" aria-labelledby="context-title">
+    <h2 id="context-title">Contexto</h2>
+    <p>El grupo de prensa español cuenta con una cartera diversa de periódicos diarios, semanarios y revistas, cada uno con su propia audiencia, tono y estilo visual. Se hacía necesario aportar coherencia en la experiencia digital para no dificultar la percepción unificada del grupo y a la vez agilizar los procesos de diseño.</p>
+    <p>El grupo cuenta actualmente con 28 periódicos y 4 revistas, además de multitud de crónicas locales y publicaciones corporativas. Se distribuyen de la siguiente manera:</p>
+    <ul>
+      <li>Periódicos regionales (Información, Faro de Vigo, Levante EMV, Diario de Mallorca, La Nueva España, El Correo de Andalucía…)</li>
+      <li>Periódicos nacionales (El periódico y El periódico de España)</li>
+      <li>Revistas (Woman, Viajar, Stylo y Cuore)</li>
+      <li>Diarios deportivos (Sport y Superdeporte)</li>
+    </ul>
+    <p>La madurez del grupo en cuanto a sistemas de diseño se encontraba en fases tempranas, lo que se tradujo en una gran ventaja al poder participar y colaborar desde el principio en la construcción y mantenimiento de las bases del sistema de diseño del grupo, lo cual fue posible gracias a la coordinación y cooperación del equipo de diseñadores entre los que se encontraban algunos más experimentados en implementar con éxito sistemas de diseño con anterioridad.</p>
+  </section>
+
+  <section class="section-wide" aria-labelledby="solution-title">
+    <h2 id="solution-title">Solución</h2>
+    <p>Se optó por desarrollar un sistema de Diseño Multimarca que constaba de un conjunto de principios de diseño, patrones y componentes compartidos, junto con pautas claras para la personalización de cada marca. Se realizaron varias fases, que incluyeron una auditoría de los componentes principales que se usaban en los periódicos del grupo, investigación y comparativa de sistemas de diseño actuales, definición y diseño de los componentes usando para ello las bases del diseño atómico y teniendo en cuenta aspectos como la accesibilidad y posteriormente implementación a código.</p>
+    <p>Mi participación, en concreto, se centró en la investigación y generación en Figma de los componentes de los formularios existentes en los periódicos y revistas del grupo, así como la definición y diseño de ventanas modales que se usarían a posteriori en los nuevos rediseños del grupo. También añadí los estilos tipográficos y la guía de estilos de colores que usa la web corporativa del grupo Prensa Ibérica. Finalmente documenté mi aporte añadiendo información de cada componente, casos de uso/mal uso, accesibilidad… etc.</p>
+
+    <div class="gallery" aria-label="Componentes y estilos del sistema de diseño">
+      <ZoomImage class="gallery__main" image={galleryMain} alt="Componentes del 42DS Design System organizados en Figma" caption="Componentes del 42DS Design System en Figma" width={738} widths={[320, 640, 738]} sizes="(max-width: 52rem) calc(100vw - 3rem), 46rem" />
+      <div class="gallery__thumbs">
+        {thumbs.map((t) => <ZoomImage image={t.image} alt={t.alt} caption={t.caption} width={177} widths={[123, 177, 354]} sizes="(max-width: 40rem) 45vw, 11rem" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wide implementation" aria-labelledby="implementation-title">
+    <h2 id="implementation-title">Implementación</h2>
+    <p>Tras la finalización de la creación de los componentes y estilos del sistema de Diseño en Figma y siguiendo con la metodología de atomic design, el equipo de Front dio paso a la implementación de los componentes en código con la idea de usar también Storybook. Crearon un showroom del sistema del sistema de diseño donde además del html, también se refleja la estructura de construcción de los componentes en Sass.</p>
+    <ImageComparison
+      id="ds-comparison"
+      before={before}
+      after={after}
+      alt="Noticia de La Opinión de Málaga rediseñada con los componentes del sistema de diseño"
+      label="Compara la noticia antes y después de aplicar el sistema de diseño"
+      caption="Imagen anterior y posterior de una noticia de La Opinión de Málaga rediseñada usando los componentes del sistema de diseño"
+      zoomCaption="Noticia de La Opinión de Málaga rediseñada con el 42DS"
+      width={768}
+      widths={[320, 640, 768]}
+      sizes="(max-width: 40rem) calc(100vw - 3rem), 38rem"
+      ratio="768 / 636"
+    />
+  </section>
+
+  <section class="section-wide" aria-labelledby="application-title">
+    <h2 id="application-title">Aplicación</h2>
+    <p>Actualmente el sistema de diseño multimarca se está implementando gradualmente en todos los periódicos del grupo, comenzando con una fase piloto en un periódico de tamaño mediano. Se realizaron ajustes basados en la retroalimentación entre los departamentos de SEO, marketing y analítica con desarrollo y se proporcionó capacitación al equipo interno para garantizar una adopción exitosa.</p>
+  </section>
+
+  <section class="section-wide" aria-labelledby="results-title">
+    <h2 id="results-title">Resultados</h2>
+    <p>La implementación del sistema de Diseño Multimarca condujo a una experiencia digital más coherente y profesional para todos los periódicos del grupo permitiendo al grupo de prensa español mantener la individualidad de cada marca mientras se ofrecía una experiencia unificada a los usuarios. Este enfoque no solo mejoró la eficiencia operativa, sino que también fortaleció la percepción de la marca en el mercado.</p>
+    <ZoomImage class="results" image={results} alt="Resultados de la implementación del 42DS Design System" caption="Resultados de la implementación del 42DS" width={553} widths={[320, 553, 1106]} sizes="(max-width: 40rem) calc(100vw - 3rem), 35rem" />
+  </section>
+
+  <CaseNav next={{ title: 'Revista RSC', href: '/revista-rsc/' }} />
+</article>
+
+<Lightbox />
+
+<style>
+  .case-study { color: var(--color-ink); }
+  .case-hero {
+    display: grid;
+    min-height: 24rem;
+    place-items: center;
+    padding: 2rem 1rem;
+    background: var(--color-surface);
+  }
+  .case-hero :global(.image-trigger) { width: min(100%, 45rem); }
+  .case-hero :global(img) { width: 100%; height: auto; }
+  .case-intro {
+    width: min(100% - 2rem, 43.25rem);
+    margin-inline: auto;
+    padding-block: 4.5rem;
+    text-align: center;
+  }
+  .case-intro h1 { margin-bottom: 1.5rem; font-size: 2.5rem; }
+  .case-intro p { max-width: none; margin: 0; }
+
+  .project { width: min(100% - 2rem, 43.25rem); margin-inline: auto; padding-bottom: 2.5rem; }
+  .project h2, .section-wide h2 { margin-bottom: 1rem; font-size: 2rem; }
+  .project__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.75rem; }
+  .project h3, .facts dt { margin: 0 0 .25rem; color: var(--color-accent); font-family: var(--font-body); font-size: .875rem; font-weight: 700; letter-spacing: .02em; line-height: 1.5; text-transform: uppercase; }
+  .project__text p { margin: 0 0 1.5rem; }
+  .facts { display: grid; gap: 1.5rem; margin: 0; }
+  .facts dd { margin: 0; }
+
+  .section-wide { width: min(100% - 2rem, 51.25rem); margin-inline: auto; padding-bottom: 2.5rem; }
+  .section-wide p { max-width: none; }
+  .section-wide ul { margin: 0 0 var(--space-s); padding-left: 2.5rem; }
+
+  .gallery { margin-top: 2rem; }
+  .gallery :global(img) { width: 100%; height: auto; }
+  .gallery__thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .625rem; margin-top: .625rem; }
+
+  .implementation { text-align: center; }
+  .implementation p { margin-inline: auto; text-align: left; }
+  .implementation :global(.comparison) { margin-top: 1.5rem; }
+
+  .section-wide :global(.results) { width: min(100%, 34.5rem); margin: 2rem auto 0; }
+  .section-wide :global(.results img) { width: 100%; height: auto; }
+
+  @media (max-width: 40rem) {
+    .case-hero { min-height: 20rem; padding: 4rem 1rem; }
+    .case-intro { width: min(100% - 2.75rem, 30rem); padding-block: 1.5rem 2rem; }
+    .case-intro h1 { margin-bottom: .75rem; font-size: 2rem; }
+    .project, .section-wide { width: min(100% - 2.75rem, 30rem); }
+    .project__grid { grid-template-columns: 1fr; gap: 1rem; }
+    .project h2, .section-wide h2 { font-size: 1.75rem; }
+    .gallery__thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>

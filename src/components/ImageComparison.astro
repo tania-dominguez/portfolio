@@ -1,0 +1,207 @@
+---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  id: string;
+  before: ImageMetadata;
+  after: ImageMetadata;
+  /** Descripción de la imagen "después" (la "antes" es decorativa). */
+  alt: string;
+  /** Etiqueta accesible del control deslizante. */
+  label: string;
+  caption: string;
+  zoomCaption: string;
+  width: number;
+  widths: number[];
+  sizes: string;
+  /** Proporción de la imagen, p. ej. "768 / 636". */
+  ratio: string;
+}
+
+const { id, before, after, alt, label, caption, zoomCaption, width, widths, sizes, ratio } = Astro.props;
+const common = { width, widths, sizes, formats: ['avif', 'webp'] as ['avif', 'webp'], loading: 'lazy' as const, decoding: 'async' as const };
+---
+
+<figure class="comparison">
+  <div class="comparison__stage" data-comparison style={`--position: 50%; aspect-ratio: ${ratio}`}>
+    <Picture class="comparison__image comparison__image--after" src={after} alt={alt} {...common} />
+    <div class="comparison__before" aria-hidden="true">
+      <Picture class="comparison__image" src={before} alt="" {...common} />
+    </div>
+    <span class="comparison__label comparison__label--before" aria-hidden="true">Before</span>
+    <span class="comparison__label comparison__label--after" aria-hidden="true">After</span>
+    <span class="comparison__divider" aria-hidden="true"><span class="comparison__handle">↔</span></span>
+    <label class="visually-hidden" for={id}>{label}. Usa las flechas para mover el separador.</label>
+    <input id={id} class="comparison__range" type="range" min="0" max="100" value="50" aria-label={label} />
+  </div>
+  <figcaption>{caption}</figcaption>
+  <button
+    class="comparison__zoom"
+    type="button"
+    data-lightbox-src={after.src}
+    data-lightbox-alt={alt}
+    data-lightbox-caption={zoomCaption}
+  >Ampliar imagen</button>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-comparison]').forEach((stage) => {
+    const range = stage.querySelector<HTMLInputElement>('input[type="range"]');
+    if (!range) return;
+    const update = () => stage.style.setProperty('--position', `${range.value}%`);
+    range.addEventListener('input', update);
+    update();
+  });
+</script>
+
+<style>
+  .comparison {
+    width: min(100%, 38rem);
+    margin: 0 auto;
+  }
+
+  .comparison__stage {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background: #fff;
+    --position: 50%;
+  }
+
+  .comparison__image {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .comparison__image :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .comparison__before {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    clip-path: inset(0 calc(100% - var(--position)) 0 0);
+  }
+
+  .comparison__before .comparison__image {
+    max-width: none;
+    width: 100%;
+  }
+
+  .comparison__divider {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: var(--position);
+    width: 2px;
+    background: var(--color-accent);
+    pointer-events: none;
+    transform: translateX(-50%);
+  }
+
+  .comparison__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: var(--color-accent);
+    background: #fff;
+    box-shadow: 0 1px 8px #0003;
+    font-size: 1.2rem;
+    transform: translate(-50%, -50%);
+  }
+
+  .comparison__range {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    touch-action: pan-y;
+  }
+
+  .comparison__stage:has(.comparison__range:focus-visible) {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .comparison__label {
+    position: absolute;
+    z-index: 2;
+    top: 0.75rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 2px;
+    color: #fff;
+    background: rgb(18 14 3 / 0.72);
+    font: 700 0.7rem/1 var(--font-body);
+    pointer-events: none;
+  }
+
+  .comparison__label--before {
+    left: 0.75rem;
+  }
+
+  .comparison__label--after {
+    right: 0.75rem;
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .comparison__zoom {
+    margin-top: 0.5rem;
+    padding: 0.3rem 0;
+    border: 0;
+    color: var(--color-accent);
+    background: transparent;
+    font: inherit;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    cursor: zoom-in;
+  }
+
+  @media (max-width: 40rem) {
+    .comparison__label {
+      top: 0.4rem;
+      font-size: 0.6rem;
+    }
+
+    .comparison__label--before {
+      left: 0.4rem;
+    }
+
+    .comparison__label--after {
+      right: 0.4rem;
+    }
+
+    .comparison__handle {
+      width: 1.8rem;
+      height: 1.8rem;
+      font-size: 1rem;
+    }
+
+    figcaption {
+      font-size: 0.68rem;
+    }
+  }
+</style>
