@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RevistaRsc from '../components/RevistaRsc.astro';
 import DesignSystem42 from '../components/DesignSystem42.astro';
+import VintedCaseStudy from '../components/VintedCaseStudy.astro';
 
 export async function getStaticPaths() {
   const proyectos = await getCollection('proyectos', ({ data }) => !data.draft);
@@ -13,11 +14,13 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={`${entry.data.title} | Tania Domínguez`} description={entry.data.description}>
+<BaseLayout title={`${entry.data.title} | Tania Domínguez`} description={entry.data.description} image={entry.data.cover.src}>
   {entry.id === 'revista-rsc' ? (
     <RevistaRsc />
   ) : entry.id === '42-design-system' ? (
     <DesignSystem42 />
+  ) : entry.id === 'vinted-case-study' ? (
+    <VintedCaseStudy />
   ) : (
     <article class="section container">
       <p>{entry.data.category}</p>

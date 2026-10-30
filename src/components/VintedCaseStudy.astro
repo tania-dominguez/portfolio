@@ -1,0 +1,85 @@
+---
+import CaseNav from './CaseNav.astro';
+import Lightbox from './Lightbox.astro';
+import ZoomImage from './ZoomImage.astro';
+import hero from '../assets/img/vinted-collections.png';
+---
+
+<article class="case-study vinted-case-study" aria-labelledby="vinted-title">
+  <section class="case-hero" aria-label="Pantallas de la función Vinted Collections">
+    <ZoomImage
+      class="vinted-hero__image"
+      image={hero}
+      alt="Tres pantallas de Vinted Collections: favoritos, creación de una colección y selección de productos"
+      caption="Pantallas de la función Vinted Collections"
+      width={496}
+      widths={[320, 480, 496]}
+      sizes="(max-width: 40rem) calc(100vw - 2rem), 31rem"
+      priority
+    />
+  </section>
+
+  <div class="case-intro">
+    <h1 id="vinted-title">Vinted collections</h1>
+    <p>
+      Diseño conceptual de una <strong>nueva funcionalidad para la app de Vinted</strong> basada en la posibilidad de crear
+      colecciones por parte de los usuarios para poder categorizar y organizar los productos de su lista de favoritos.
+    </p>
+    <a class="vinted-cta" href="https://www.behance.net/gallery/125044261/Vinted-case-study" target="_blank" rel="noopener noreferrer">
+      Ver proyecto en Behance<span class="visually-hidden"> (se abre en una pestaña nueva)</span>
+    </a>
+  </div>
+
+  <CaseNav
+    prev={{ title: 'Revista RSC', href: '/revista-rsc/' }}
+    next={{ title: 'Ilustración El Poble de la Dana', href: '/ilustracion-el-poble-de-la-dana/' }}
+  />
+</article>
+
+<Lightbox />
+
+<style>
+  .vinted-case-study { color: var(--color-ink); }
+  .case-hero {
+    display: grid;
+    min-height: 24rem;
+    padding: 2rem 1rem;
+    place-items: center;
+    background: var(--color-surface);
+  }
+  .case-hero :global(.vinted-hero__image) { width: min(100%, 31rem); }
+  .case-hero :global(img) { width: 100%; height: auto; }
+  .case-intro {
+    width: min(100% - 2rem, 43.25rem);
+    margin-inline: auto;
+    padding-block: 4.5rem;
+    text-align: center;
+  }
+  .case-intro h1 { margin-bottom: 1.5rem; font-size: 2.5rem; }
+  .case-intro p { max-width: none; margin: 0; line-height: 1.5; }
+  .case-intro strong { font-weight: 700; }
+  .vinted-cta {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: .9375rem 1.875rem;
+    border-radius: 3px;
+    color: #fff;
+    background: #b19141;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color var(--duration-fast) var(--ease-out);
+  }
+  .vinted-cta:hover { background: var(--color-accent); }
+  @media (max-width: 40rem) {
+    .case-hero { min-height: 24rem; padding: 2rem 1rem; }
+    .case-hero :global(.vinted-hero__image) { width: min(100%, 24rem); }
+    .case-intro { width: min(100% - 2.75rem, 30rem); padding-block: 1.5rem 2rem; }
+    .case-intro h1 { margin-bottom: .75rem; font-size: 2rem; }
+    .case-intro p { font-size: .875rem; }
+    .vinted-cta { margin-top: 1.5rem; }
+  }
+</style>
+
