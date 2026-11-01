@@ -13,12 +13,11 @@ import before from '../assets/img/42ds/before.png';
 import after from '../assets/img/42ds/after.png';
 import results from '../assets/img/42ds/resultados.png';
 
-// Revisar los textos alternativos cuando se sustituyan las imágenes provisionales.
 const thumbs = [
-  { image: gallery1, alt: 'Componentes de formularios del 42DS Design System en Figma', caption: 'Componentes de formularios del 42DS' },
-  { image: gallery2, alt: 'Ventanas modales del 42DS Design System en Figma', caption: 'Ventanas modales del 42DS' },
-  { image: gallery3, alt: 'Estilos tipográficos del 42DS Design System en Figma', caption: 'Estilos tipográficos del 42DS' },
-  { image: gallery4, alt: 'Guía de estilos de color del 42DS Design System en Figma', caption: 'Guía de color del 42DS' },
+  { image: gallery1, alt: 'Casos de uso y mal uso del componente dropdown del 42DS Design System, con ejemplos Do y Caution', caption: 'Casos de uso y mal uso del dropdown' },
+  { image: gallery2, alt: 'Documentación del estilo por marca del dropdown en Sport, El Periódico y Woman, en tema claro y oscuro', caption: 'Estilo por marca: Sport, El Periódico y Woman' },
+  { image: gallery3, alt: 'Elementos, tamaños y márgenes del componente dropdown del 42DS Design System', caption: 'Elementos, tamaños y márgenes del dropdown' },
+  { image: gallery4, alt: 'Guía de colores primarios, secundarios y fondos de Prensa Ibérica en el 42DS Design System', caption: 'Guía de color de Prensa Ibérica' },
 ];
 ---
 
@@ -102,7 +101,7 @@ const thumbs = [
   <section class="section-wide" aria-labelledby="results-title">
     <h2 id="results-title">Resultados</h2>
     <p>La implementación del sistema de Diseño Multimarca condujo a una experiencia digital más coherente y profesional para todos los periódicos del grupo permitiendo al grupo de prensa español mantener la individualidad de cada marca mientras se ofrecía una experiencia unificada a los usuarios. Este enfoque no solo mejoró la eficiencia operativa, sino que también fortaleció la percepción de la marca en el mercado.</p>
-    <ZoomImage class="results" image={results} alt="Resultados de la implementación del 42DS Design System" caption="Resultados de la implementación del 42DS" width={553} widths={[320, 553, 1106]} sizes="(max-width: 40rem) calc(100vw - 3rem), 35rem" />
+    <ZoomImage class="results" image={results} alt="Resultados de la implementación del 42DS Design System" caption="Resultados de la implementación del 42DS" width={553} widths={[320, 553]} sizes="(max-width: 40rem) calc(100vw - 3rem), 35rem" />
   </section>
 
   <CaseNav next={{ title: 'Revista RSC', href: '/revista-rsc/' }} />
@@ -119,10 +118,10 @@ const thumbs = [
     padding: 2rem 1rem;
     background: var(--color-surface);
   }
-  .case-hero :global(.image-trigger) { width: min(100%, 45rem); }
+  .case-hero :global(.image-trigger) { width: min(100%, var(--w-hero)); }
   .case-hero :global(img) { width: 100%; height: auto; }
   .case-intro {
-    width: min(100% - 2rem, 43.25rem);
+    width: min(100% - 2rem, var(--w-narrow));
     margin-inline: auto;
     padding-block: 4.5rem;
     text-align: center;
@@ -130,19 +129,19 @@ const thumbs = [
   .case-intro h1 { margin-bottom: 1.5rem; font-size: 2.5rem; }
   .case-intro p { max-width: none; margin: 0; }
 
-  .project { width: min(100% - 2rem, 43.25rem); margin-inline: auto; padding-bottom: 2.5rem; }
+  .project { width: min(100% - 2rem, var(--w-main)); margin-inline: auto; padding-bottom: 2.5rem; }
   .project h2, .section-wide h2 { margin-bottom: 1rem; font-size: 2rem; }
-  .project__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.75rem; }
+  .project__grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; column-gap: 16%; row-gap: 2.75rem; }
   .project h3, .facts dt { margin: 0 0 .25rem; color: var(--color-accent); font-family: var(--font-body); font-size: .875rem; font-weight: 700; letter-spacing: .02em; line-height: 1.5; text-transform: uppercase; }
   .project__text p { margin: 0 0 1.5rem; }
   .facts { display: grid; gap: 1.5rem; margin: 0; }
   .facts dd { margin: 0; }
 
-  .section-wide { width: min(100% - 2rem, 51.25rem); margin-inline: auto; padding-bottom: 2.5rem; }
+  .section-wide { width: min(100% - 2rem, var(--w-main)); margin-inline: auto; padding-bottom: 2.5rem; }
   .section-wide p { max-width: none; }
   .section-wide ul { margin: 0 0 var(--space-s); padding-left: 2.5rem; }
 
-  .gallery { margin-top: 2rem; }
+  .gallery { width: min(100%, var(--w-gallery)); margin: 2rem auto 0; }
   .gallery :global(img) { width: 100%; height: auto; }
   .gallery__thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .625rem; margin-top: .625rem; }
 
@@ -150,7 +149,7 @@ const thumbs = [
   .implementation p { margin-inline: auto; text-align: left; }
   .implementation :global(.comparison) { margin-top: 1.5rem; }
 
-  .section-wide :global(.results) { width: min(100%, 34.5rem); margin: 2rem auto 0; }
+  .section-wide :global(.results) { width: min(100%, var(--w-results)); margin: 2rem auto 0; }
   .section-wide :global(.results img) { width: 100%; height: auto; }
 
   @media (max-width: 40rem) {

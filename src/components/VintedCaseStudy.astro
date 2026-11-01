@@ -47,10 +47,10 @@ import hero from '../assets/img/vinted-collections.png';
     place-items: center;
     background: var(--color-surface);
   }
-  .case-hero :global(.vinted-hero__image) { width: min(100%, 31rem); }
+  .case-hero :global(.vinted-hero__image) { width: min(100%, max(31rem, calc(var(--case-vw) * 0.4844))); }
   .case-hero :global(img) { width: 100%; height: auto; }
   .case-intro {
-    width: min(100% - 2rem, 43.25rem);
+    width: min(100% - 2rem, var(--w-narrow));
     margin-inline: auto;
     padding-block: 4.5rem;
     text-align: center;
