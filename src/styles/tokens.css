@@ -35,15 +35,16 @@
   --container: 64rem; /* 1024 */
   --measure: 65ch;
 
-  /* Anchos de case study: valen lo del frame 1024w de Figma hasta 1024 px y crecen
-     en proporción al viewport por encima (tope 1920 px). */
+  /* Medidas del diseño de Figma (frames 1024w y 1920w). Hasta 1024 px valen lo del frame
+     de 1024; por encima crecen en proporción al viewport hasta el valor del frame de 1920
+     (tope 1920 px). Fórmula: max(valor@1024, fracción × viewport). */
   --case-vw: min(100vw, 120rem);
-  --w-narrow: max(43.25rem, calc(var(--case-vw) * 0.6758)); /* 692 */
-  --w-main: max(51.25rem, calc(var(--case-vw) * 0.7998)); /* 819 */
-  --w-hero: max(45rem, calc(var(--case-vw) * 0.7002)); /* 717 */
-  --w-gallery: max(46.125rem, calc(var(--case-vw) * 0.7207)); /* 738 */
-  --w-compare: max(38rem, calc(var(--case-vw) * 0.5938)); /* 608 */
-  --w-results: max(34.5rem, calc(var(--case-vw) * 0.5391)); /* 552 */
+  --color-hero-band: #ebe6d7;
+  --hdr-x: max(10px, calc(var(--case-vw) * 0.049)); /* 94 @1920 */
+  --hdr-y: max(10px, calc(var(--case-vw) * 0.0177)); /* 34 @1920 */
+  --nav-x: max(10px, calc(var(--case-vw) * 0.0318)); /* 61 @1920 */
+  --w-narrow: 43.25rem; /* intro de case study: 692, igual en ambos frames */
+  --w-compare: max(37.4375rem, calc(var(--case-vw) * 0.3901)); /* 599 → 749 */
 
   /* Movimiento */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
