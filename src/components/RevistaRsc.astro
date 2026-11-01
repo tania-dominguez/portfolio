@@ -15,7 +15,7 @@ import after from '../assets/img/revista-rsc/after-original.png';
 
 <article class="case-study" aria-labelledby="case-title">
   <section class="case-hero" aria-label="Creatividades de Revista RSC en prensa, portátil y tableta">
-    <ZoomImage image={hero} alt="La campaña de Revista RSC aplicada a prensa, un periódico digital y una tableta" caption="Creatividades de Revista RSC en prensa, web y tableta" width={768} widths={[320, 640, 768]} sizes="(max-width: 40rem) calc(100vw - 2rem), 48rem" priority />
+    <ZoomImage image={hero} alt="La campaña de Revista RSC aplicada a prensa, un periódico digital y una tableta" caption="Creatividades de Revista RSC en prensa, web y tableta" width={768} widths={[320, 640, 768, 1208]} sizes="(max-width: 40rem) calc(100vw - 2rem), max(768px, 64vw)" priority />
   </section>
 
   <div class="case-intro">
@@ -23,11 +23,8 @@ import after from '../assets/img/revista-rsc/after-original.png';
     <p>Diseño de creatividades para campaña publicitaria de autopromoción para el lanzamiento de la revista RSC, un semanario sobre responsabilidad social corporativa del grupo de comunicación Prensa Ibérica, que trata temas de actualidad como ética empresarial, marketing engañoso, bienestar social… Sus ediciones en papel y digital se distribuyen y se publican conjuntamente en los más de 20 periódicos regionales a nivel nacional que tiene actualmente el grupo.</p>
   </div>
 
-  <figure class="print-art">
-    <ZoomImage image={cover} alt="Portadas de la revista RSC con las ilustraciones y el lema Make Things Happen" caption="Portadas de la revista RSC" width={1008} widths={[320, 640, 1008]} sizes="(max-width: 40rem) calc(100vw - 2rem), 39rem" />
-  </figure>
-
-  <section class="project container" aria-labelledby="project-title">
+  <section class="project-band" aria-labelledby="project-title">
+    <div class="project">
     <h2 id="project-title">Proyecto</h2>
     <div class="project__grid">
       <div class="challenge">
@@ -41,11 +38,17 @@ import after from '../assets/img/revista-rsc/after-original.png';
         <div><dt>Timing</dt><dd>6 horas</dd></div>
       </dl>
     </div>
+    </div>
   </section>
 
-  <section class="solution container" aria-labelledby="solution-title">
-    <h2 id="solution-title">Solución</h2>
+  <figure class="print-art">
+    <ZoomImage image={cover} alt="Portadas de la revista RSC con las ilustraciones y el lema Make Things Happen" caption="Portadas de la revista RSC" width={1008} widths={[320, 640, 1008]} sizes="(max-width: 40rem) calc(100vw - 2rem), 39rem" />
+  </figure>
+
+  <section class="solution-band" aria-labelledby="solution-title">
+    <div class="solution">
     <div class="solution__copy">
+      <h2 id="solution-title">Solución</h2>
       <p>Tomando como referencia los formatos publicitarios comúnmente usados en prensa digital y teniendo en cuenta aspectos como el consumo en CPU y el porcentaje de información visible en los skys laterales según la resolución, diseñé las siguientes creatividades para ser mostradas en las portadas digitales de los periódicos del grupo para desktop, tablet y mobile:</p>
       <ul>
         <li>Billboard</li>
@@ -55,17 +58,20 @@ import after from '../assets/img/revista-rsc/after-original.png';
       <p>Para la campaña en papel que se mostraría en los periódicos en soporte físico del grupo a media página adapté el diseño a fondo transparente.</p>
     </div>
 
+    <div class="solution__media">
     <figure class="billboard">
-      <ZoomImage image={printCampaign} alt="Anuncio de media página para la edición impresa del periódico" caption="Campaña impresa para la revista RSC" width={1024} widths={[320, 640, 1024]} sizes="(max-width: 40rem) calc(100vw - 3rem), 39rem" />
+      <ZoomImage image={printCampaign} alt="Anuncio de media página para la edición impresa del periódico" caption="Campaña impresa para la revista RSC" width={1024} widths={[320, 640, 1024, 1568]} sizes="(max-width: 40rem) calc(100vw - 3rem), (max-width: 75rem) 39rem, 41vw" />
     </figure>
     <div class="formats" aria-label="Adaptaciones de la campaña digital">
       <ZoomImage image={periodical} alt="Anuncio de la revista integrado en una edición impresa" caption="Campaña publicada en prensa" width={320} widths={[144, 224, 320]} sizes="(max-width: 40rem) 30vw, 14rem" />
       <ZoomImage image={tablet} alt="Adaptación de la campaña para una tableta" caption="Adaptación de la campaña para tableta" width={320} widths={[144, 224, 320]} sizes="(max-width: 40rem) 30vw, 14rem" />
       <ZoomImage image={creatives} alt="Campaña integrada en la portada digital de Levante" caption="Campaña integrada en la portada digital de Levante" width={320} widths={[144, 224, 320]} sizes="(max-width: 40rem) 30vw, 14rem" />
     </div>
+  </div>
+    </div>
   </section>
 
-  <section class="implementation container" aria-labelledby="implementation-title">
+  <section class="implementation" aria-labelledby="implementation-title">
     <h2 id="implementation-title">Implementación</h2>
     <ImageComparison
       id="rsc-comparison"
@@ -76,8 +82,8 @@ import after from '../assets/img/revista-rsc/after-original.png';
       caption="Imagen de mapa publicitario en la portada digital de un periódico y la portada real con la publicidad diseñada integrada con el diseño."
       zoomCaption="Resultado final: campaña RSC integrada en la portada de Levante"
       width={768}
-      widths={[320, 640, 768]}
-      sizes="(max-width: 40rem) calc(100vw - 3rem), 38rem"
+      widths={[320, 640, 768, 1024]}
+      sizes="(max-width: 40rem) calc(100vw - 3rem), max(599px, 53vw)"
       ratio="1024 / 634"
     />
   </section>
@@ -88,15 +94,20 @@ import after from '../assets/img/revista-rsc/after-original.png';
 <Lightbox />
 
 <style>
+  /*
+    Medidas del diseño de Figma. Los valores a 1024 px son los de siempre; por encima crecen
+    con --g (px de viewport sobre 1024, máx. 896) hasta los del frame 1920w. Con ≥1200 px,
+    Solución pasa a dos columnas (medios a la izquierda, texto a la derecha).
+  */
   .case-study { color: var(--color-ink); }
   .case-hero {
     display: grid;
     min-height: 24rem;
     place-items: center;
-    padding: 2rem 1rem;
-    background: var(--color-surface);
+    padding: calc(32px + var(--g) * 0.0424) 1rem;
+    background: var(--color-hero-band);
   }
-  .case-hero :global(.image-trigger) { width: min(100%, max(48rem, calc(var(--case-vw) * 0.75))); }
+  .case-hero :global(.image-trigger) { width: min(100%, calc(768px + var(--g) * 0.5179)); }
   .case-hero :global(img) { width: 100%; height: auto; }
   .case-intro {
     width: min(100% - 2rem, var(--w-narrow));
@@ -106,52 +117,96 @@ import after from '../assets/img/revista-rsc/after-original.png';
   }
   .case-intro h1 { margin-bottom: 1.5rem; font-size: 2.5rem; }
   .case-intro p { max-width: none; margin: 0; line-height: 1.5; }
-  .print-art {
-    display: grid;
-    width: min(100% - 2rem, max(48rem, calc(var(--case-vw) * 0.75)));
-    margin: 0 auto 2rem;
-    padding: 1rem;
-    place-items: center;
+
+  /* Proyecto: banda con fondo a todo el ancho */
+  .project-band {
+    padding-block: calc(51px + var(--g) * 0.038) calc(51px + var(--g) * 0.0737);
     background: var(--color-surface);
   }
-  .print-art :global(.image-trigger) { width: min(100%, max(39rem, calc(var(--case-vw) * 0.6094))); }
-  .print-art :global(img) { width: 100%; height: auto; }
-  .container { width: min(100% - 2rem, var(--w-narrow)); margin-inline: auto; }
-  .project { padding-block: 0 1.5rem; }
+  .project { width: min(100% - 2rem, var(--w-narrow)); margin-inline: auto; }
   .project h2, .solution h2, .implementation h2 { margin-bottom: 1rem; font-size: 2rem; }
   .project__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
   .challenge h3, .facts dt { margin: 0 0 .5rem; color: var(--color-accent); font-size: .8rem; font-weight: 700; text-transform: uppercase; }
   .challenge p, .facts dd, .solution p { margin: 0; font-size: .9rem; line-height: 1.5; }
   .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; margin: 0; }
   .facts dd { max-width: 24ch; }
-  .solution { padding-block: 1rem 2rem; }
+
+  /* Portadas: sobre blanco, sin caja */
+  .print-art {
+    display: grid;
+    width: min(100% - 2rem, 39rem);
+    margin: calc(32px + var(--g) * 0.0536) auto calc(32px + var(--g) * 0.0703);
+    place-items: center;
+  }
+  .print-art :global(.image-trigger) { width: 100%; }
+  .print-art :global(img) { width: 100%; height: auto; }
+
+  /* Solución: banda con fondo a todo el ancho */
+  .solution-band { padding-block: 51px; background: var(--color-surface); }
+  .solution { width: min(100% - 2rem, var(--w-narrow)); margin-inline: auto; }
   .solution__copy { max-width: 34rem; }
   .solution__copy p + p { margin-top: 1rem; }
   .solution ul { margin: .4rem 0 1rem; padding-left: 1.25rem; font-size: .9rem; line-height: 1.5; }
-  .billboard, .print-campaign { margin: 1.5rem auto 0; padding: .75rem; background: var(--color-surface); }
-  .billboard { width: min(100%, max(39rem, calc(var(--case-vw) * 0.6094))); }
-  .billboard :global(img), .print-campaign :global(img) { width: 100%; height: auto; }
+  .billboard { width: min(100%, 39rem); margin: 1.5rem auto 0; }
+  .billboard :global(img) { width: 100%; height: auto; }
   .formats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .75rem; }
   .formats :global(img) { width: 100%; height: auto; aspect-ratio: 1024 / 641; object-fit: contain; object-position: center; background: var(--color-surface); }
-  .print-campaign { width: min(100%, max(39rem, calc(var(--case-vw) * 0.6094))); margin-top: 1rem; }
-  .implementation { padding-block: 1rem 2rem; text-align: center; }
+
+  .implementation {
+    width: min(100% - 2rem, calc(692px + var(--g) * 0.6));
+    margin-inline: auto;
+    padding-block: calc(16px + var(--g) * 0.0837) calc(32px + var(--g) * 0.0759);
+    text-align: center;
+  }
+  .implementation :global(.comparison) { width: min(100%, calc(599px + var(--g) * 0.4743)); }
+
+  @media (min-width: 64.0625rem) {
+    .project { width: calc(692px + var(--g) * 0.5993); margin-left: calc(166px + var(--g) * 0.1027); margin-right: auto; }
+    .project__grid {
+      grid-template-columns: calc(330px + var(--g) * 0.3058) minmax(0, 1fr);
+      column-gap: calc(32px + var(--g) * 0.1004);
+    }
+    .facts { column-gap: calc(32px + var(--g) * 0.048); }
+    .facts > div:nth-child(3) { order: 4; }
+  }
+
+  @media (min-width: 75rem) {
+    .solution {
+      display: grid;
+      grid-template-columns: 784fr 517fr;
+      column-gap: calc(var(--case-vw) * 0.088);
+      align-items: start;
+      width: min(100% - 2rem, calc(var(--case-vw) * 0.7656));
+      margin-left: calc(var(--case-vw) * 0.0698);
+      margin-right: auto;
+    }
+    .solution__media { order: -1; }
+    .solution__copy { max-width: none; padding-top: calc(var(--case-vw) * 0.012); }
+    .billboard { width: 100%; margin: 0; }
+    .formats {
+      width: 49%;
+      margin: calc(var(--case-vw) * 0.0229) 2% 0 auto;
+      column-gap: calc(var(--case-vw) * 0.0135);
+    }
+    .formats :global(img) { aspect-ratio: 1 / 1; }
+  }
+
   @media (max-width: 40rem) {
     .case-hero { min-height: 24rem; padding: 7rem 1rem; }
     .case-hero :global(img) { width: 100%; }
     .case-intro { width: min(100% - 2.75rem, 30rem); padding-block: 1.5rem 2rem; }
     .case-intro h1 { margin-bottom: .75rem; font-size: 2rem; }
     .case-intro p { font-size: .875rem; }
-    .print-art { width: min(100% - 2rem, 30rem); margin-bottom: 1.25rem; padding: .5rem; }
+    .print-art { width: min(100% - 2rem, 30rem); margin-block: 1.25rem; }
     .print-art :global(img) { width: 100%; }
-    .container { width: min(100% - 2.75rem, 30rem); }
+    .project, .solution, .implementation { width: min(100% - 2.75rem, 30rem); }
+    .project-band, .solution-band { padding-block: 2rem; }
     .project__grid { grid-template-columns: 1fr; gap: 1rem; }
     .project h2, .solution h2, .implementation h2 { font-size: 1.75rem; }
     .challenge p, .facts dd, .solution p, .solution ul { font-size: .82rem; }
     .facts { gap: .9rem 1rem; }
-    .solution { padding-top: 1.25rem; }
-    .billboard, .print-campaign { padding: .5rem; }
     .formats { gap: .35rem; }
-    .implementation { padding-top: 1rem; }
+    .implementation { padding-block: 1rem 2rem; }
   }
 </style>
 
