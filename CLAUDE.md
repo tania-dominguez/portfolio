@@ -28,7 +28,7 @@ Archivo "Portfolio" (cuenta tdominguezvi@uoc.edu): https://www.figma.com/design/
 ## Case studies
 - Componentes compartidos: `ZoomImage` (imagen clicable → visor), `Lightbox` (un `<dialog>` por página, recorre todos los `[data-lightbox-src]`), `ImageComparison` (before/after con `input[type=range]`, accesible por teclado), `CaseNav`. Cualquier imagen nueva de un case study debe usar `ZoomImage`.
 - `RevistaRsc.astro` y `DesignSystem42.astro` se montan desde `src/pages/[slug].astro`.
-- 42DS: imágenes provisionales (PLACEHOLDER) en `src/assets/img/42ds/`; sustituir por las reales con el mismo nombre y revisar los `alt` en `DesignSystem42.astro`.
+- 42DS: imágenes reales en `src/assets/img/42ds/` (galería: dropdown casos de uso, estilo por marca, elementos, color; before = noticia antigua, after = rediseñada). Si se sustituyen, mantener nombre y revisar los `alt` en `DesignSystem42.astro`.
 - Límite de llamadas del MCP de Figma (plan Starter) alcanzado el 30-10-2026: usar `get_metadata` guardado o capturas en el chat.
 
 ## Pendiente

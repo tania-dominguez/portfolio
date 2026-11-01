@@ -13,12 +13,11 @@ import before from '../assets/img/42ds/before.png';
 import after from '../assets/img/42ds/after.png';
 import results from '../assets/img/42ds/resultados.png';
 
-// Revisar los textos alternativos cuando se sustituyan las imágenes provisionales.
 const thumbs = [
-  { image: gallery1, alt: 'Componentes de formularios del 42DS Design System en Figma', caption: 'Componentes de formularios del 42DS' },
-  { image: gallery2, alt: 'Ventanas modales del 42DS Design System en Figma', caption: 'Ventanas modales del 42DS' },
-  { image: gallery3, alt: 'Estilos tipográficos del 42DS Design System en Figma', caption: 'Estilos tipográficos del 42DS' },
-  { image: gallery4, alt: 'Guía de estilos de color del 42DS Design System en Figma', caption: 'Guía de color del 42DS' },
+  { image: gallery1, alt: 'Casos de uso y mal uso del componente dropdown del 42DS Design System, con ejemplos Do y Caution', caption: 'Casos de uso y mal uso del dropdown' },
+  { image: gallery2, alt: 'Documentación del estilo por marca del dropdown en Sport, El Periódico y Woman, en tema claro y oscuro', caption: 'Estilo por marca: Sport, El Periódico y Woman' },
+  { image: gallery3, alt: 'Elementos, tamaños y márgenes del componente dropdown del 42DS Design System', caption: 'Elementos, tamaños y márgenes del dropdown' },
+  { image: gallery4, alt: 'Guía de colores primarios, secundarios y fondos de Prensa Ibérica en el 42DS Design System', caption: 'Guía de color de Prensa Ibérica' },
 ];
 ---
 
@@ -102,7 +101,7 @@ const thumbs = [
   <section class="section-wide" aria-labelledby="results-title">
     <h2 id="results-title">Resultados</h2>
     <p>La implementación del sistema de Diseño Multimarca condujo a una experiencia digital más coherente y profesional para todos los periódicos del grupo permitiendo al grupo de prensa español mantener la individualidad de cada marca mientras se ofrecía una experiencia unificada a los usuarios. Este enfoque no solo mejoró la eficiencia operativa, sino que también fortaleció la percepción de la marca en el mercado.</p>
-    <ZoomImage class="results" image={results} alt="Resultados de la implementación del 42DS Design System" caption="Resultados de la implementación del 42DS" width={553} widths={[320, 553, 1106]} sizes="(max-width: 40rem) calc(100vw - 3rem), 35rem" />
+    <ZoomImage class="results" image={results} alt="Resultados de la implementación del 42DS Design System" caption="Resultados de la implementación del 42DS" width={553} widths={[320, 553]} sizes="(max-width: 40rem) calc(100vw - 3rem), 35rem" />
   </section>
 
   <CaseNav next={{ title: 'Revista RSC', href: '/revista-rsc/' }} />
