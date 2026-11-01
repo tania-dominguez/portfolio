@@ -20,7 +20,7 @@ import hero from '../assets/img/vinted-collections.png';
   </section>
 
   <div class="case-intro">
-    <h1 id="vinted-title">Vinted collections</h1>
+    <h1 id="vinted-title">Colecciones de Vinted</h1>
     <p>
       Diseño conceptual de una <strong>nueva funcionalidad para la app de Vinted</strong> basada en la posibilidad de crear
       colecciones por parte de los usuarios para poder categorizar y organizar los productos de su lista de favoritos.
@@ -29,6 +29,78 @@ import hero from '../assets/img/vinted-collections.png';
       Ver proyecto en Behance<span class="visually-hidden"> (se abre en una pestaña nueva)</span>
     </a>
   </div>
+
+  <section class="vinted-band" aria-labelledby="project-title">
+    <div class="vinted-content">
+      <h2 id="project-title">El proyecto</h2>
+      <div class="vinted-project-grid">
+        <div>
+          <h3>El reto</h3>
+          <p>Las personas usuarias guardan muchos artículos en Favoritos, pero una lista extensa dificulta volver a encontrar lo que les interesa. La propuesta explora cómo agrupar esos artículos en colecciones personalizadas para facilitar su organización y consulta.</p>
+        </div>
+        <dl class="vinted-facts">
+          <div><dt>Tipo de proyecto</dt><dd>Proyecto personal</dd></div>
+          <div><dt>Duración</dt><dd>3 semanas</dd></div>
+          <div><dt>Mi rol</dt><dd>UX, UI e investigación</dd></div>
+          <div><dt>Plataforma</dt><dd>Android</dd></div>
+          <div><dt>Metodología</dt><dd>Lean UX</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="vinted-content vinted-section" aria-labelledby="research-title">
+    <h2 id="research-title">Investigación y oportunidad</h2>
+    <p>La investigación combinó experiencia propia, documentación secundaria y una encuesta cuantitativa a 15 personas usuarias habituales de aplicaciones de compraventa. El problema detectado fue la dificultad para localizar artículos guardados cuando se acumulan muchos Favoritos.</p>
+    <div class="vinted-findings">
+      <article>
+        <strong>60&nbsp;%</strong>
+        <p>de las personas encuestadas eran usuarias habituales de estas aplicaciones.</p>
+      </article>
+      <article>
+        <strong>46&nbsp;%</strong>
+        <p>consideraba que la nueva función podía mejorar su experiencia y la organización de sus Favoritos.</p>
+      </article>
+    </div>
+    <p>Entre las respuestas se repitieron ideas como encontrar antes un artículo según la ocasión, evitar tener que recorrer toda la lista y decidir con más facilidad qué comprar.</p>
+    <p class="vinted-note">La lámina también plantea una extrapolación a partir de una base de 45 millones de usuarios: estima 27 millones de usuarios habituales y cerca de 12 millones potencialmente receptivos a la función. Son cálculos del estudio original.</p>
+  </section>
+
+  <section class="vinted-band" aria-labelledby="journey-title">
+    <div class="vinted-content">
+      <h2 id="journey-title">Recorrido actual</h2>
+      <p>El mapa del recorrido analiza la experiencia sin la función propuesta. Guardar artículos resulta sencillo, pero buscar dentro de una lista larga genera frustración. Después, la persona compra artículos de vendedores distintos y debe repetir pasos durante el pago si quiere adquirir más.</p>
+      <ol class="vinted-journey" aria-label="Etapas del recorrido actual">
+        <li>Guardar en Favoritos</li>
+        <li>Buscar en Favoritos</li>
+        <li>Comprar artículos</li>
+        <li>Pagar</li>
+        <li>Repetir la compra a otro vendedor</li>
+      </ol>
+      <p>La oportunidad consiste en facilitar la selección de artículos guardados y hacer más clara su organización antes de iniciar la compra.</p>
+    </div>
+  </section>
+
+  <section class="vinted-content vinted-section" aria-labelledby="architecture-title">
+    <h2 id="architecture-title">Arquitectura y flujo de usuario</h2>
+    <p>La arquitectura sitúa Colecciones dentro del perfil, junto a Favoritos y los artículos añadidos recientemente. La navegación principal conserva las áreas de Inicio, Búsqueda, Venta, Bandeja de entrada y Perfil.</p>
+    <h3>Crear y consultar colecciones</h3>
+    <ol class="vinted-flow">
+      <li><span>1</span>Entrar en el perfil y abrir Favoritos.</li>
+      <li><span>2</span>Elegir entre los artículos recientes y las colecciones.</li>
+      <li><span>3</span>Consultar una colección o crear una nueva.</li>
+      <li><span>4</span>Añadir artículos favoritos a la colección y volver a la lista organizada.</li>
+    </ol>
+  </section>
+
+  <section class="vinted-band" aria-labelledby="design-title">
+    <div class="vinted-content">
+      <h2 id="design-title">Del wireframe al prototipo</h2>
+      <p>Tras esbozar las pantallas en papel, la propuesta se pasó a Figma como prototipo de baja fidelidad para definir el recorrido. La comparación con una pantalla existente de Vinted ayudó a mantener una tipografía sans serif, la escala y los espacios de la interfaz, además de crear iconos de navegación coherentes con la aplicación.</p>
+      <p>El diseño parte de un sistema visual preexistente y adapta los componentes necesarios para esta funcionalidad. La organización sigue los principios de Atomic Design, desde elementos básicos hasta componentes y pantallas. Para el prototipo de alta fidelidad se aplicó una cuadrícula de 8 puntos y las pautas de Material Design para márgenes y diseño adaptable.</p>
+      <p>El prototipo recorre la entrada, la carga de Favoritos, la creación de una colección, la selección de artículos y la consulta de las colecciones creadas.</p>
+    </div>
+  </section>
 
   <CaseNav
     prev={{ title: 'Revista RSC', href: '/revista-rsc/' }}
@@ -58,6 +130,27 @@ import hero from '../assets/img/vinted-collections.png';
   .case-intro h1 { margin-bottom: 1.5rem; font-size: 2.5rem; }
   .case-intro p { max-width: none; margin: 0; line-height: 1.5; }
   .case-intro strong { font-weight: 700; }
+  .vinted-band { padding-block: 3.25rem; background: var(--color-surface); }
+  .vinted-content { width: min(100% - 2rem, var(--w-narrow)); margin-inline: auto; }
+  .vinted-section { padding-block: 3.25rem; }
+  .vinted-content h2 { margin-bottom: 1.25rem; font-size: 2rem; }
+  .vinted-content h3 { margin: 1.75rem 0 .75rem; color: var(--color-accent); font-family: var(--font-body); font-size: 1rem; font-weight: 700; }
+  .vinted-content p, .vinted-content li, .vinted-facts dd { font-size: .9rem; line-height: 1.6; }
+  .vinted-project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .vinted-project-grid p, .vinted-content > p:last-child { margin-bottom: 0; }
+  .vinted-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; margin: 0; }
+  .vinted-facts dt { margin-bottom: .25rem; color: var(--color-accent); font-size: .75rem; font-weight: 700; text-transform: uppercase; }
+  .vinted-facts dd { margin: 0; }
+  .vinted-findings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-block: 1.5rem; }
+  .vinted-findings article { padding: 1.25rem; border: 1px solid var(--color-border); border-radius: var(--radius); }
+  .vinted-findings strong { color: var(--color-accent); font-family: var(--font-display); font-size: 2rem; font-weight: 400; }
+  .vinted-findings p { margin: .25rem 0 0; }
+  .vinted-note { color: var(--color-muted); font-size: .78rem !important; }
+  .vinted-journey { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .75rem; margin: 1.5rem 0; padding: 0; list-style: none; counter-reset: journey; }
+  .vinted-journey li { padding-top: .75rem; border-top: 2px solid var(--color-accent); font-size: .78rem; }
+  .vinted-flow { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+  .vinted-flow li { display: flex; align-items: center; gap: .75rem; }
+  .vinted-flow span { display: grid; width: 2rem; aspect-ratio: 1; flex: 0 0 auto; place-items: center; border-radius: 50%; color: var(--color-on-accent); background: var(--color-accent); font-size: .8rem; }
   .vinted-cta {
     display: inline-flex;
     min-height: 3rem;
@@ -80,6 +173,16 @@ import hero from '../assets/img/vinted-collections.png';
     .case-intro h1 { margin-bottom: .75rem; font-size: 2rem; }
     .case-intro p { font-size: .875rem; }
     .vinted-cta { margin-top: 1.5rem; }
+    .vinted-band, .vinted-section { padding-block: 2rem; }
+    .vinted-content { width: min(100% - 2.75rem, 30rem); }
+    .vinted-content h2 { font-size: 1.75rem; }
+    .vinted-content p, .vinted-content li, .vinted-facts dd { font-size: .82rem; }
+    .vinted-project-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    .vinted-facts { gap: .85rem 1rem; }
+    .vinted-findings { gap: .65rem; }
+    .vinted-findings article { padding: .85rem; }
+    .vinted-journey { grid-template-columns: 1fr; gap: .5rem; }
+    .vinted-journey li { padding: .5rem .75rem; border-top: 0; border-left: 2px solid var(--color-accent); }
   }
 </style>
 

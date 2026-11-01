@@ -1,5 +1,5 @@
 ---
-title: "Vinted collections"
+title: "Colecciones de Vinted"
 description: "Diseño conceptual de colecciones para organizar los productos favoritos en la app de Vinted."
 category: "UX/UI Design"
 order: 3
