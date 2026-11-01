@@ -29,7 +29,7 @@ Archivo "Portfolio" (cuenta tdominguezvi@uoc.edu): https://www.figma.com/design/
 - Componentes compartidos: `ZoomImage` (imagen clicable → visor), `Lightbox` (un `<dialog>` por página, recorre todos los `[data-lightbox-src]`), `ImageComparison` (before/after con `input[type=range]`, accesible por teclado), `CaseNav`. Cualquier imagen nueva de un case study debe usar `ZoomImage`.
 - `RevistaRsc.astro` y `DesignSystem42.astro` se montan desde `src/pages/[slug].astro`.
 - 42DS: imágenes reales en `src/assets/img/42ds/` (galería: dropdown casos de uso, estilo por marca, elementos, color; before = noticia antigua, after = rediseñada). Si se sustituyen, mantener nombre y revisar los `alt` en `DesignSystem42.astro`.
-- Anchos de case study: tokens `--w-*` en `tokens.css` (valen lo del frame 1024w de Figma hasta 1024 px y crecen con el viewport por encima, tope 1920 px). La cabecera va a todo el ancho. Usar estos tokens en cualquier case study nuevo; las imágenes no deben pasar mucho de su resolución original.
+- Anchos de case study: medidas de los frames 1024w y 1920w de Figma. Tokens `--g`, `--hdr-x/y`, `--nav-x`, `--box-x` en `tokens.css`: valen lo del frame 1024w hasta 1024 px y crecen linealmente hasta lo del 1920w (tope 1920 px). Con ≥1200 px, 42DS pasa a dos columnas en Solución y Aplicación/Resultados. Colores: banda hero #ebe6d7, cajas y bandas #e8e2d1. Las imágenes no deben pasar mucho de su resolución original.
 - Límite de llamadas del MCP de Figma (plan Starter) alcanzado el 30-10-2026: usar `get_metadata` guardado o capturas en el chat.
 
 ## Pendiente

@@ -40,9 +40,14 @@
      (tope 1920 px). Fórmula: max(valor@1024, fracción × viewport). */
   --case-vw: min(100vw, 120rem);
   --color-hero-band: #ebe6d7;
-  --hdr-x: max(10px, calc(var(--case-vw) * 0.049)); /* 94 @1920 */
-  --hdr-y: max(10px, calc(var(--case-vw) * 0.0177)); /* 34 @1920 */
-  --nav-x: max(10px, calc(var(--case-vw) * 0.0318)); /* 61 @1920 */
+  /* --g: píxeles de viewport por encima de 1024 (0 hasta 1024, 896 en 1920). Los valores
+     anclados son valor@1024 + --g × pendiente, así valen lo del frame 1024w a 1024 px y
+     lo del frame 1920w a 1920 px. */
+  --g: calc(max(var(--case-vw), 64rem) - 64rem);
+  --hdr-x: calc(10px + var(--g) * 0.0949); /* 10 → 95 */
+  --hdr-y: calc(10px + var(--g) * 0.0268); /* 10 → 34 */
+  --nav-x: calc(10px + var(--g) * 0.0569); /* 10 → 61 */
+  --box-x: calc(51px + var(--g) * 0.029); /* 51 → 77 */
   --w-narrow: 43.25rem; /* intro de case study: 692, igual en ambos frames */
   --w-compare: max(37.4375rem, calc(var(--case-vw) * 0.3901)); /* 599 → 749 */
 

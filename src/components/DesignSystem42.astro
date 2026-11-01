@@ -152,9 +152,9 @@ const thumbs = [
 
   /* Proyecto: caja con fondo */
   .project-box {
-    width: min(100% - 2rem, max(57.625rem, calc(var(--case-vw) * 0.9198)));
+    width: calc(100% - 2 * var(--box-x));
     margin: 0 auto 2.5rem;
-    padding-block: max(3.1875rem, calc(var(--case-vw) * 0.0833)) max(3.1875rem, calc(var(--case-vw) * 0.0474));
+    padding-block: calc(51px + var(--g) * 0.1217) calc(51px + var(--g) * 0.0446);
     background: var(--color-surface);
   }
   .project { width: min(100% - 2rem, max(51.1875rem, calc(var(--case-vw) * 0.5865))); margin-inline: auto; }
@@ -179,7 +179,7 @@ const thumbs = [
 
   /* Solución: banda con fondo a todo el ancho */
   .band {
-    padding-block: max(3.1875rem, calc(var(--case-vw) * 0.114)) max(2.5rem, calc(var(--case-vw) * 0.0755));
+    padding-block: calc(51px + var(--g) * 0.1875) calc(51px + var(--g) * 0.105);
     background: var(--color-surface);
   }
   .solution { width: min(100% - 2rem, 51.25rem); margin-inline: auto; }
@@ -211,7 +211,7 @@ const thumbs = [
 
   /* Tablet ancha y escritorio: anchos y márgenes que crecen desde los del frame 1024w */
   @media (min-width: 40.0625rem) {
-    .case-hero { min-height: 0; padding-block: max(10px, calc(var(--case-vw) * 0.0135)); }
+    .case-hero { min-height: 0; padding-block: calc(10px + var(--g) * 0.0246); }
   }
 
   @media (min-width: 64.0625rem) {
