@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeading from '../components/PageHeading.astro';
 import retrato from '../assets/img/tania-dominguez-about.jpg';
 ---
 
@@ -8,9 +9,7 @@ import retrato from '../assets/img/tania-dominguez-about.jpg';
   title="Sobre mí | Tania Domínguez"
   description="Conoce a Tania Domínguez, diseñadora UX/UI en Alicante. Su experiencia en prensa digital y diseño de producto."
 >
-  <header class="about-heading">
-    <h1>Sobre mí</h1>
-  </header>
+  <PageHeading title="Sobre mí" />
 
   <article class="about container" aria-labelledby="about-title">
     <h2 id="about-title" class="visually-hidden">Sobre Tania</h2>
@@ -77,18 +76,6 @@ import retrato from '../assets/img/tania-dominguez-about.jpg';
 </BaseLayout>
 
 <style>
-  .about-heading {
-    padding: 0.625rem 1rem;
-    text-align: center;
-    background: var(--color-surface);
-  }
-
-  .about-heading h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    line-height: 1;
-  }
-
   .about {
     display: flex;
     flex-direction: column;

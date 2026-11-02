@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import PageHeading from '../components/PageHeading.astro';
 
 interface Props {
   title: string;
@@ -11,8 +12,8 @@ const { title, description, updated } = Astro.props;
 ---
 
 <BaseLayout title={`${title} | Tania Domínguez`} description={description}>
+  <PageHeading title={title} />
   <article class="section container">
-    <h1>{title}</h1>
     <p class="legal-updated">Última actualización: {updated}</p>
     <div class="prose">
       <slot />
