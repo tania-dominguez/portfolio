@@ -11,6 +11,8 @@
   --color-text: var(--color-ink);
   --color-muted: #5c5648;
   --color-border: #cfc6ab;
+  --color-card-border: #d9d9d9;
+  --shadow-card: 0 2px 4px rgb(0 0 0 / 0.2); /* x 0, y 2, blur 4, #000 20% */
 
   /* Tipografía */
   --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
