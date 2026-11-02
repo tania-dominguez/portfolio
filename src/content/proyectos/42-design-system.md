@@ -1,7 +1,7 @@
 ---
 title: "42DS Design System"
 description: "Construcción del Sistema de Diseño multimarca del grupo de prensa español Prensa Ibérica."
-category: "Design system"
+category: "Design System"
 order: 1
 cover: "../../assets/img/42ds.png"
 coverAlt: "Interfaz del 42DS Design System mostrada en un monitor de escritorio"

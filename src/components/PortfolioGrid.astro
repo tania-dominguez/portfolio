@@ -1,0 +1,183 @@
+---
+import { getCollection } from 'astro:content';
+import PortfolioCard from './PortfolioCard.astro';
+import { categories } from '../data/categories';
+
+const proyectos = (await getCollection('proyectos', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const filters = ['Todos', ...categories];
+---
+
+<section class="portfolio container" aria-label="Proyectos" data-filter-root>
+  <!-- Sin JS no hay filtros: se ven todos los proyectos y la barra queda oculta -->
+  <div class="filters" role="group" aria-label="Filtrar por categoría" data-filter-bar hidden>
+    {
+      filters.map((label, i) => (
+        <button
+          type="button"
+          class="chip"
+          data-filter={label}
+          aria-pressed={i === 0 ? 'true' : 'false'}
+        >
+          {label}
+        </button>
+      ))
+    }
+  </div>
+
+  <p class="visually-hidden" role="status" aria-live="polite" data-filter-status></p>
+
+  <ul class="projects" role="list">
+    {
+      proyectos.map((p, i) => (
+        <li data-category={p.data.category}>
+          <PortfolioCard
+            title={p.data.title}
+            category={p.data.category}
+            href={`/${p.id}/`}
+            cover={p.data.cover}
+            coverAlt={p.data.coverAlt}
+            eager={i < 3}
+          />
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="empty" data-filter-empty hidden>Todavía no hay proyectos en esta categoría.</p>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-filter-root]');
+  const bar = root?.querySelector<HTMLElement>('[data-filter-bar]');
+  const status = root?.querySelector<HTMLElement>('[data-filter-status]');
+  const empty = root?.querySelector<HTMLElement>('[data-filter-empty]');
+
+  if (root && bar && status && empty) {
+    const buttons = [...bar.querySelectorAll<HTMLButtonElement>('button[data-filter]')];
+    const items = [...root.querySelectorAll<HTMLElement>('li[data-category]')];
+
+    bar.hidden = false;
+
+    bar.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter]');
+      if (!button) return;
+
+      const selected = button.dataset.filter;
+      let visible = 0;
+
+      for (const b of buttons) b.setAttribute('aria-pressed', String(b === button));
+      for (const item of items) {
+        const show = selected === 'Todos' || item.dataset.category === selected;
+        item.hidden = !show;
+        if (show) visible += 1;
+      }
+
+      button.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      empty.hidden = visible > 0;
+      status.textContent =
+        visible === 0
+          ? `Sin proyectos en ${selected}.`
+          : `${visible} ${visible === 1 ? 'proyecto' : 'proyectos'}${selected === 'Todos' ? '' : ` en ${selected}`}.`;
+    });
+  }
+</script>
+
+<style>
+  .portfolio {
+    padding-block: var(--space-l) var(--space-2xl);
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-l);
+  }
+
+  /* Móvil: una sola línea con scroll horizontal (el hueco lateral deja ver el foco) */
+  @media (max-width: 39.9375rem) {
+    .filters {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      margin: -0.5rem -1rem calc(var(--space-l) - 0.5rem);
+      padding: 0.5rem 1rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+    }
+  }
+
+  .filters[hidden],
+  .empty[hidden],
+  .projects > li[hidden] {
+    display: none;
+  }
+
+  .chip {
+    min-height: 2.5rem;
+    padding: 0.5rem 1.125rem;
+    font: inherit;
+    font-size: var(--text-btn);
+    line-height: 1.2;
+    color: var(--color-ink);
+    white-space: nowrap;
+    cursor: pointer;
+    background: var(--color-surface);
+    border: 0;
+    border-radius: var(--radius-pill);
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+  }
+
+  .chip:hover {
+    background: var(--color-border);
+  }
+
+  .chip[aria-pressed='true'] {
+    color: var(--color-on-accent);
+    background: var(--color-accent);
+  }
+
+  .chip[aria-pressed='true']:hover {
+    background: var(--color-ink);
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-l) var(--space-m);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .empty {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  @media (min-width: 40rem) {
+    .projects {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .projects {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

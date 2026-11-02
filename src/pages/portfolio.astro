@@ -1,14 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectList from '../components/ProjectList.astro';
+import PageHeading from '../components/PageHeading.astro';
+import PortfolioGrid from '../components/PortfolioGrid.astro';
 ---
 
 <BaseLayout
   title="Portfolio | Tania Domínguez"
   description="Proyectos de diseño UX/UI, sistemas de diseño y diseño gráfico de Tania Domínguez."
 >
-  <section class="section container">
-    <h1>Portfolio</h1>
-  </section>
-  <ProjectList />
+  <PageHeading title="Portfolio" />
+  <PortfolioGrid />
 </BaseLayout>
