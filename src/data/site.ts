@@ -18,8 +18,5 @@ export const site = {
   ],
   social: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/tania-dominguez/' },
-    { label: 'Behance', href: 'https://www.behance.net/tania-dominguez' },
-    { label: 'Medium', href: 'https://tania-dominguez.medium.com/' },
-    { label: 'Instagram', href: 'https://www.instagram.com/taniadominguez_com/' },
   ],
 } as const;
