@@ -46,8 +46,9 @@ const widths = [...new Set([Math.min(420, cover.width), Math.min(840, cover.widt
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto 1fr;
     height: 100%;
-    background: var(--color-bg);
-    border: 1px solid var(--color-card-border);
+    overflow: hidden;
+    background: var(--color-card);
+    border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
   }
 
@@ -82,12 +83,12 @@ const widths = [...new Set([Math.min(420, cover.width), Math.min(840, cover.widt
     top: 0.75rem;
     left: 0.75rem;
     margin: 0;
-    padding: 0.4rem 0.6rem;
+    padding: 0.4rem 0.75rem;
     font-size: var(--text-s);
     line-height: 1;
     color: var(--color-ink);
     background: var(--color-surface);
-    border-radius: var(--radius);
+    border-radius: var(--radius-pill);
   }
 
   .card__title {

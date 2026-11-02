@@ -75,6 +75,7 @@ const filters = ['Todos', ...categories];
         if (show) visible += 1;
       }
 
+      button.scrollIntoView({ block: 'nearest', inline: 'nearest' });
       empty.hidden = visible > 0;
       status.textContent =
         visible === 0
@@ -97,6 +98,27 @@ const filters = ['Todos', ...categories];
     margin-bottom: var(--space-l);
   }
 
+  /* Móvil: una sola línea con scroll horizontal (el hueco lateral deja ver el foco) */
+  @media (max-width: 39.9375rem) {
+    .filters {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      margin: -0.5rem -1rem calc(var(--space-l) - 0.5rem);
+      padding: 0.5rem 1rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+    }
+  }
+
   .filters[hidden],
   .empty[hidden],
   .projects > li[hidden] {
@@ -110,10 +132,11 @@ const filters = ['Todos', ...categories];
     font-size: var(--text-btn);
     line-height: 1.2;
     color: var(--color-ink);
+    white-space: nowrap;
     cursor: pointer;
     background: var(--color-surface);
     border: 0;
-    border-radius: var(--radius);
+    border-radius: var(--radius-pill);
     transition:
       background-color var(--duration-fast) var(--ease-out),
       color var(--duration-fast) var(--ease-out);
