@@ -3,6 +3,8 @@ import logo from '../assets/img/logo.svg';
 import { site } from '../data/site';
 
 const current = Astro.url.pathname;
+const contact = site.nav.find((item) => item.href === '/contacto/');
+const links = site.nav.filter((item) => item.href !== '/contacto/');
 ---
 
 <header class="site-header">
@@ -24,7 +26,7 @@ const current = Astro.url.pathname;
     <nav id="site-nav" class="site-nav" aria-label="Principal">
       <ul>
         {
-          site.nav.map((item) => (
+          links.map((item) => (
             <li>
               <a href={item.href} aria-current={current.startsWith(item.href) ? 'page' : undefined}>
                 {item.label}
@@ -35,6 +37,19 @@ const current = Astro.url.pathname;
         <li>
           <a href={site.cv} type="application/pdf">CV<span class="visually-hidden"> (PDF)</span></a>
         </li>
+        {
+          contact && (
+            <li>
+              <a
+                class="site-nav__cta"
+                href={contact.href}
+                aria-current={current.startsWith(contact.href) ? 'page' : undefined}
+              >
+                {contact.label}
+              </a>
+            </li>
+          )
+        }
       </ul>
     </nav>
   </div>
@@ -123,6 +138,7 @@ const current = Astro.url.pathname;
   .site-nav ul {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--space-xs) var(--space-l);
     margin: 0;
     padding: 0;
@@ -140,6 +156,32 @@ const current = Astro.url.pathname;
     text-underline-offset: 0.35em;
   }
 
+  /* Contacto: enlace con aspecto de botón (fondo #E8E2D1, esquinas totalmente redondeadas) */
+  .site-nav a.site-nav__cta {
+    display: inline-block;
+    padding: 0.625rem 1.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+  }
+
+  .site-nav a.site-nav__cta:hover,
+  .site-nav a.site-nav__cta[aria-current='page'] {
+    text-decoration: none;
+  }
+
+  .site-nav a.site-nav__cta:hover {
+    color: var(--color-on-dark);
+    background: var(--color-ink);
+  }
+
+  .site-nav a.site-nav__cta[aria-current='page'] {
+    box-shadow: inset 0 0 0 2px var(--color-ink);
+  }
+
   /* Móvil y tablet pequeña: menú plegado. En escritorio, lista de secciones. */
   @media (max-width: 48rem) {
     .menu-toggle {
@@ -152,12 +194,22 @@ const current = Astro.url.pathname;
 
     .site-nav ul {
       flex-direction: column;
+      align-items: stretch;
       gap: 0;
     }
 
     .site-nav a {
       display: block;
       padding-block: 0.75rem;
+    }
+
+    .site-nav li:has(> .site-nav__cta) {
+      margin-block: 0.5rem 0.75rem;
+    }
+
+    .site-nav a.site-nav__cta {
+      display: block;
+      text-align: center;
     }
 
     :global(.js) .site-nav:not(.is-open) {
