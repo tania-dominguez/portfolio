@@ -60,13 +60,6 @@
      "Proyecto" de los case studies. */
   --home-w: min(100% - 2rem, calc(55.7rem + var(--g) * 0.6));
 
-  /* Material "glass" (Apple HIG, Materials / Liquid Glass): desenfoque del fondo, borde
-     brillante y reflejo especular. */
-  --glass-blur: blur(22px) saturate(180%);
-  --glass-rim: rgb(255 255 255 / 0.6);
-  --glass-shine: rgb(255 255 255 / 0.85);
-  --glass-shadow: 0 18px 40px rgb(18 14 3 / 0.12), 0 2px 6px rgb(18 14 3 / 0.08);
-
   /* Movimiento */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-fast: 150ms;

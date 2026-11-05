@@ -6,7 +6,6 @@ import retrato from '../assets/img/tania-dominguez.png';
 ---
 
 <BaseLayout title="Tania Domínguez | Diseñadora UX/UI e ilustración en Alicante">
-  <div class="home">
   <section class="hero">
     <h1>¡Hola! Soy Tania Domínguez, diseñadora UX/UI</h1>
 
@@ -36,40 +35,19 @@ import retrato from '../assets/img/tania-dominguez.png';
     <h2 id="proyectos-titulo" class="visually-hidden">Proyectos</h2>
     <ProjectList />
   </section>
-  </div>
 </BaseLayout>
 
 <style>
-  /* Fondo con manchas de color de la paleta: es lo que el material "glass" de botones y
-     tarjetas desenfoca y deja ver a través. */
-  .home {
-    position: relative;
-    isolation: isolate;
-  }
-
-  .home::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      radial-gradient(30rem 30rem at 8% 6%, rgb(177 145 65 / 0.38), transparent 70%),
-      radial-gradient(34rem 34rem at 96% 20%, rgb(125 96 23 / 0.22), transparent 70%),
-      radial-gradient(32rem 32rem at 4% 48%, rgb(232 226 209 / 0.9), transparent 70%),
-      radial-gradient(36rem 36rem at 98% 62%, rgb(177 145 65 / 0.32), transparent 70%),
-      radial-gradient(30rem 30rem at 10% 92%, rgb(125 96 23 / 0.2), transparent 70%);
-  }
-
   /* Móvil: una columna centrada. Orden: título, imagen, descripción, botón.
-     La sección de apertura ocupa al menos el 75 % de la altura de la pantalla. */
+     La sección de apertura ocupa al menos el 85 % de la altura de la pantalla. */
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     align-content: center;
     justify-items: center;
-    min-height: 75vh;
-    min-height: 75svh;
+    min-height: 85vh;
+    min-height: 85svh;
+    container-type: inline-size;
     text-align: center;
     width: min(100% - 2rem, var(--container));
     margin-inline: auto;
@@ -77,7 +55,7 @@ import retrato from '../assets/img/tania-dominguez.png';
   }
 
   .hero h1 {
-    max-width: 8em;
+    max-width: 14em;
     margin-bottom: var(--space-m);
   }
 
@@ -95,18 +73,22 @@ import retrato from '../assets/img/tania-dominguez.png';
   @media (min-width: 52.0625rem) {
     /* Ancho de la home (--home-w); imagen y texto crecen con él */
     .hero {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
       grid-template-rows: 1fr auto auto auto 1fr;
       justify-items: start;
-      column-gap: clamp(3rem, 5vw, 6rem);
+      column-gap: clamp(2rem, 3vw, 4rem);
       width: var(--home-w);
       padding-top: 10px;
       text-align: left;
     }
 
+    /* Título más ancho: cabe en dos líneas. El tamaño escala con el ancho de la sección
+       para que la columna siempre tenga ≥ 14 em. */
     .hero h1 {
       grid-column: 1;
       grid-row: 2;
+      font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+      font-size: clamp(1.75rem, 3.7cqi, 2.5rem);
     }
 
     .hero__lead {
@@ -130,9 +112,9 @@ import retrato from '../assets/img/tania-dominguez.png';
       margin-bottom: 0;
     }
 
-    /* La imagen nunca desborda la sección de apertura (75 % de la pantalla) */
+    /* La imagen nunca desborda la sección de apertura (85 % de la pantalla) */
     .hero__media :global(img) {
-      width: min(100%, calc((75svh - 4rem) * 648 / 695)); /* ancho fijado por la proporción: sin CLS */
+      width: min(100%, calc((85svh - 4rem) * 648 / 695)); /* ancho fijado por la proporción: sin CLS */
       height: auto;
       margin-inline: auto;
     }
