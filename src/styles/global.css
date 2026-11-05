@@ -104,13 +104,13 @@ a {
   top: var(--space-s);
 }
 
-/* Botones: --solid (CTA principal) y --outline (CTA de tarjeta) */
+/* Botones: --solid (CTA principal) y --outline (CTA de tarjeta), con esquinas totalmente redondeadas */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 2px solid transparent;
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
   font: inherit;
   font-size: var(--text-btn);
   line-height: 1;

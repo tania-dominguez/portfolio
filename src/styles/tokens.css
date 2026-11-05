@@ -12,6 +12,7 @@
   --color-muted: #5c5648;
   --color-border: #cfc6ab;
   --color-card: #f5f5f5;
+  --color-canvas: #f4f0e8; /* fondo del contenido de /portfolio/ */
   --shadow-card: 0 2px 4px rgb(0 0 0 / 0.2); /* x 0, y 2, blur 4, #000 20% */
 
   /* Tipografía */
@@ -54,6 +55,11 @@
   --box-x: calc(51px + var(--g) * 0.029); /* 51 → 77 */
   --w-narrow: 43.25rem; /* intro de case study: 692, igual en ambos frames */
   --w-compare: max(37.4375rem, calc(var(--case-vw) * 0.3901)); /* 599 → 749 */
+
+  /* Ancho del contenido de la home: 891 px hasta 1024 px de viewport y crece al 60 % del
+     viewport restante (≈1140 px a 1440, ≈1430 px a 1920), siempre más estrecho que la caja
+     "Proyecto" de los case studies. */
+  --home-w: min(100% - 2rem, calc(55.7rem + var(--g) * 0.6));
 
   /* Movimiento */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

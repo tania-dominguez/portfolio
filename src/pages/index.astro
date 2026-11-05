@@ -15,7 +15,7 @@ import retrato from '../assets/img/tania-dominguez.png';
         alt="Ilustración de Tania Domínguez trabajando con un portátil"
         width={390}
         widths={[390, 648]}
-        sizes="(max-width: 52rem) 100vw, 390px"
+        sizes="(max-width: 52rem) 100vw, min(648px, 45vw)"
         formats={['avif', 'webp']}
         loading="eager"
         fetchpriority="high"
@@ -38,11 +38,16 @@ import retrato from '../assets/img/tania-dominguez.png';
 </BaseLayout>
 
 <style>
-  /* Móvil: una columna centrada. Orden: título, imagen, descripción, botón. */
+  /* Móvil: una columna centrada. Orden: título, imagen, descripción, botón.
+     La sección de apertura ocupa al menos el 85 % de la altura de la pantalla. */
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    align-content: center;
     justify-items: center;
+    min-height: 85vh;
+    min-height: 85svh;
+    container-type: inline-size;
     text-align: center;
     width: min(100% - 2rem, var(--container));
     margin-inline: auto;
@@ -50,7 +55,7 @@ import retrato from '../assets/img/tania-dominguez.png';
   }
 
   .hero h1 {
-    max-width: 8em;
+    max-width: 14em;
     margin-bottom: var(--space-m);
   }
 
@@ -66,19 +71,24 @@ import retrato from '../assets/img/tania-dominguez.png';
 
   /* Escritorio: texto a la izquierda (centrado en vertical) e imagen a la derecha. */
   @media (min-width: 52.0625rem) {
+    /* Ancho de la home (--home-w); imagen y texto crecen con él */
     .hero {
-      grid-template-columns: minmax(0, 24.3rem) minmax(0, 24.4rem);
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
       grid-template-rows: 1fr auto auto auto 1fr;
-      justify-content: center;
       justify-items: start;
-      column-gap: 4.9rem;
+      column-gap: clamp(2rem, 3vw, 4rem);
+      width: var(--home-w);
       padding-top: 10px;
       text-align: left;
     }
 
+    /* Título más ancho: cabe en dos líneas. El tamaño escala con el ancho de la sección
+       para que la columna siempre tenga ≥ 14 em. */
     .hero h1 {
       grid-column: 1;
       grid-row: 2;
+      font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+      font-size: clamp(1.75rem, 3.7cqi, 2.5rem);
     }
 
     .hero__lead {
@@ -98,7 +108,15 @@ import retrato from '../assets/img/tania-dominguez.png';
       grid-row: 1 / span 5;
       align-self: center;
       justify-self: center;
+      width: min(100%, 40.5rem); /* tope: resolución real (648 px) */
       margin-bottom: 0;
+    }
+
+    /* La imagen nunca desborda la sección de apertura (85 % de la pantalla) */
+    .hero__media :global(img) {
+      width: min(100%, calc((85svh - 4rem) * 648 / 695)); /* ancho fijado por la proporción: sin CLS */
+      height: auto;
+      margin-inline: auto;
     }
   }
 </style>

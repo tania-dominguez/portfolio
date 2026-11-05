@@ -14,18 +14,19 @@ interface Props {
 
 const { title, category, description, href, cover, coverAlt, coverWidth } = Astro.props;
 
-// 1x y 2x, sin superar el ancho real de la imagen
-const widths = [...new Set([coverWidth, Math.min(coverWidth * 2, cover.width)])];
+// La imagen crece con la tarjeta hasta 720 px (nunca más que su resolución real)
+const maxWidth = Math.min(cover.width, 720);
+const widths = [...new Set([coverWidth, Math.min(coverWidth * 2, cover.width), cover.width])].sort((a, b) => a - b);
 ---
 
 <article class="card">
-  <div class="card__media">
+  <div class="card__media" style={`--cover-max: ${maxWidth}px`}>
     <Picture
       src={cover}
       alt={coverAlt}
       width={coverWidth}
       widths={widths}
-      sizes={`(max-width: ${coverWidth}px) 100vw, ${coverWidth}px`}
+      sizes={`(max-width: 52rem) calc(100vw - 5rem), min(${maxWidth}px, 50vw)`}
       formats={['avif', 'webp']}
       loading="lazy"
       decoding="async"
@@ -45,16 +46,22 @@ const widths = [...new Set([coverWidth, Math.min(coverWidth * 2, cover.width)])]
 <style>
   .card {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 18.65rem);
+    grid-template-columns: minmax(0, 1fr) minmax(18.65rem, 28%);
     align-items: center;
     gap: var(--space-l) 3.8rem;
     padding: 3.125rem;
     background: var(--color-surface);
+    border-radius: 1.75rem;
   }
 
   .card__media {
     justify-self: center;
-    max-width: 100%;
+    width: min(100%, var(--cover-max));
+  }
+
+  .card__media :global(img) {
+    width: 100%;
+    height: auto;
   }
 
   .card__body {
@@ -84,6 +91,7 @@ const widths = [...new Set([coverWidth, Math.min(coverWidth * 2, cover.width)])]
     .card {
       grid-template-columns: minmax(0, 1fr);
       padding: var(--space-m);
+      border-radius: 1.5rem;
     }
 
     .card__body {
