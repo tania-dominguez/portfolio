@@ -6,6 +6,7 @@ import retrato from '../assets/img/tania-dominguez.png';
 ---
 
 <BaseLayout title="Tania Domínguez | Diseñadora UX/UI e ilustración en Alicante">
+  <div class="home">
   <section class="hero">
     <h1>¡Hola! Soy Tania Domínguez, diseñadora UX/UI</h1>
 
@@ -15,7 +16,7 @@ import retrato from '../assets/img/tania-dominguez.png';
         alt="Ilustración de Tania Domínguez trabajando con un portátil"
         width={390}
         widths={[390, 648]}
-        sizes="(max-width: 52rem) 100vw, min(810px, 45vw)"
+        sizes="(max-width: 52rem) 100vw, min(648px, 45vw)"
         formats={['avif', 'webp']}
         loading="eager"
         fetchpriority="high"
@@ -35,14 +36,40 @@ import retrato from '../assets/img/tania-dominguez.png';
     <h2 id="proyectos-titulo" class="visually-hidden">Proyectos</h2>
     <ProjectList />
   </section>
+  </div>
 </BaseLayout>
 
 <style>
-  /* Móvil: una columna centrada. Orden: título, imagen, descripción, botón. */
+  /* Fondo con manchas de color de la paleta: es lo que el material "glass" de botones y
+     tarjetas desenfoca y deja ver a través. */
+  .home {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .home::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(30rem 30rem at 8% 6%, rgb(177 145 65 / 0.38), transparent 70%),
+      radial-gradient(34rem 34rem at 96% 20%, rgb(125 96 23 / 0.22), transparent 70%),
+      radial-gradient(32rem 32rem at 4% 48%, rgb(232 226 209 / 0.9), transparent 70%),
+      radial-gradient(36rem 36rem at 98% 62%, rgb(177 145 65 / 0.32), transparent 70%),
+      radial-gradient(30rem 30rem at 10% 92%, rgb(125 96 23 / 0.2), transparent 70%);
+  }
+
+  /* Móvil: una columna centrada. Orden: título, imagen, descripción, botón.
+     La sección de apertura ocupa al menos el 75 % de la altura de la pantalla. */
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    align-content: center;
     justify-items: center;
+    min-height: 75vh;
+    min-height: 75svh;
     text-align: center;
     width: min(100% - 2rem, var(--container));
     margin-inline: auto;
@@ -66,13 +93,13 @@ import retrato from '../assets/img/tania-dominguez.png';
 
   /* Escritorio: texto a la izquierda (centrado en vertical) e imagen a la derecha. */
   @media (min-width: 52.0625rem) {
-    /* Mismo ancho que la caja "Proyecto" de los case studies; imagen y texto crecen con él */
+    /* Ancho de la home (--home-w); imagen y texto crecen con él */
     .hero {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       grid-template-rows: 1fr auto auto auto 1fr;
       justify-items: start;
-      column-gap: clamp(4.9rem, 6vw, 8rem);
-      width: calc(100% - 2 * var(--box-x));
+      column-gap: clamp(3rem, 5vw, 6rem);
+      width: var(--home-w);
       padding-top: 10px;
       text-align: left;
     }
@@ -99,12 +126,15 @@ import retrato from '../assets/img/tania-dominguez.png';
       grid-row: 1 / span 5;
       align-self: center;
       justify-self: center;
-      width: min(100%, 50.625rem); /* hasta ~1,25× la resolución real (648 px) */
+      width: min(100%, 40.5rem); /* tope: resolución real (648 px) */
       margin-bottom: 0;
     }
 
+    /* La imagen nunca desborda la sección de apertura (75 % de la pantalla) */
     .hero__media :global(img) {
-      width: 100%;
+      width: min(100%, calc((75svh - 4rem) * 648 / 695)); /* ancho fijado por la proporción: sin CLS */
+      height: auto;
+      margin-inline: auto;
     }
   }
 </style>

@@ -104,43 +104,91 @@ a {
   top: var(--space-s);
 }
 
-/* Botones: --solid (CTA principal) y --outline (CTA de tarjeta) */
+/* Botones con material "glass" (Apple HIG): --solid (CTA principal) y --outline (CTA de tarjeta).
+   Los fondos se mantienen lo bastante opacos para conservar contraste AA del texto. */
 .btn {
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid transparent;
-  border-radius: var(--radius);
+  border: 1px solid var(--glass-rim);
+  border-radius: var(--radius-pill);
   font: inherit;
   font-size: var(--text-btn);
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 var(--glass-shine),
+    inset 0 -1px 1px rgb(18 14 3 / 0.14),
+    0 6px 16px rgb(18 14 3 / 0.18);
   transition:
     background-color var(--duration-fast) var(--ease-out),
-    color var(--duration-fast) var(--ease-out);
+    color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+/* Reflejo especular en el tercio superior, detrás del texto */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.32), rgb(255 255 255 / 0) 30%);
+  pointer-events: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .btn--solid {
   padding: 0.9375rem 1.875rem;
   font-size: var(--text-m);
   color: var(--color-on-accent);
-  background: var(--color-accent);
+  background: linear-gradient(180deg, rgb(125 96 23 / 0.94), rgb(104 80 18 / 0.96));
 }
 
 .btn--solid:hover {
-  background: var(--color-ink);
+  background: linear-gradient(180deg, rgb(40 31 8 / 0.92), rgb(18 14 3 / 0.95));
 }
 
 .btn--outline {
   padding: 0.75rem 1.5rem;
   color: var(--color-accent);
-  border-color: var(--color-accent);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.82), rgb(255 255 255 / 0.6));
 }
 
 .btn--outline:hover {
   color: var(--color-on-accent);
-  background: var(--color-accent);
+  background: linear-gradient(180deg, rgb(125 96 23 / 0.94), rgb(104 80 18 / 0.96));
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .btn {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .btn--solid {
+    background: var(--color-accent);
+  }
+
+  .btn--outline {
+    background: var(--color-bg);
+    border-color: var(--color-accent);
+  }
+}
+
+@media (forced-colors: active) {
+  .btn {
+    border-color: ButtonText;
+  }
 }
 
 .prose > * + * {
