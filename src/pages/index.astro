@@ -15,7 +15,7 @@ import retrato from '../assets/img/tania-dominguez.png';
         alt="Ilustración de Tania Domínguez trabajando con un portátil"
         width={390}
         widths={[390, 648]}
-        sizes="(max-width: 52rem) 100vw, 390px"
+        sizes="(max-width: 52rem) 100vw, min(810px, 45vw)"
         formats={['avif', 'webp']}
         loading="eager"
         fetchpriority="high"
@@ -66,12 +66,13 @@ import retrato from '../assets/img/tania-dominguez.png';
 
   /* Escritorio: texto a la izquierda (centrado en vertical) e imagen a la derecha. */
   @media (min-width: 52.0625rem) {
+    /* Mismo ancho que la caja "Proyecto" de los case studies; imagen y texto crecen con él */
     .hero {
-      grid-template-columns: minmax(0, 24.3rem) minmax(0, 24.4rem);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       grid-template-rows: 1fr auto auto auto 1fr;
-      justify-content: center;
       justify-items: start;
-      column-gap: 4.9rem;
+      column-gap: clamp(4.9rem, 6vw, 8rem);
+      width: calc(100% - 2 * var(--box-x));
       padding-top: 10px;
       text-align: left;
     }
@@ -98,7 +99,12 @@ import retrato from '../assets/img/tania-dominguez.png';
       grid-row: 1 / span 5;
       align-self: center;
       justify-self: center;
+      width: min(100%, 50.625rem); /* hasta ~1,25× la resolución real (648 px) */
       margin-bottom: 0;
+    }
+
+    .hero__media :global(img) {
+      width: 100%;
     }
   }
 </style>

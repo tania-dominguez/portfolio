@@ -27,7 +27,8 @@ const proyectos = (await getCollection('proyectos', ({ data }) => !data.draft)).
   .projects {
     display: grid;
     gap: 3rem;
-    width: min(100% - 2rem, 55.7rem);
+    /* Mismo ancho que la caja "Proyecto" de los case studies */
+    width: calc(100% - 2 * var(--box-x));
     margin-inline: auto;
     padding-block: 3rem;
   }
