@@ -9,5 +9,13 @@ import PortfolioGrid from '../components/PortfolioGrid.astro';
   description="Proyectos de diseño UX/UI, sistemas de diseño y diseño gráfico de Tania Domínguez."
 >
   <PageHeading title="Portfolio" />
-  <PortfolioGrid />
+  <div class="portfolio-page">
+    <PortfolioGrid />
+  </div>
 </BaseLayout>
+
+<style>
+  .portfolio-page {
+    background: var(--color-canvas);
+  }
+</style>

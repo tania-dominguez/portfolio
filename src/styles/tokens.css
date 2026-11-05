@@ -12,6 +12,7 @@
   --color-muted: #5c5648;
   --color-border: #cfc6ab;
   --color-card: #f5f5f5;
+  --color-canvas: #f4f0e8; /* fondo del contenido de /portfolio/ */
   --shadow-card: 0 2px 4px rgb(0 0 0 / 0.2); /* x 0, y 2, blur 4, #000 20% */
 
   /* Tipografía */
