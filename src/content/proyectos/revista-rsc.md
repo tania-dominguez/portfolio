@@ -6,6 +6,7 @@ order: 2
 cover: "../../assets/img/revista-rsc.png"
 coverAlt: "Creatividades de la revista RSC en papel, portátil y tableta"
 coverWidth: 309
+home: true
 ---
 
 Contenido del caso de estudio pendiente de migrar desde WordPress.

@@ -8,12 +8,14 @@ interface Props {
   items: Item[];
   /** Página actual: no se ve (el diseño solo muestra los antecesores), pero los lectores de pantalla la anuncian. */
   current?: string;
+  /** Fondo de la banda: igual que la primera sección del proyecto (surface #e8e2d1 o hero #ebe6d7). */
+  tone?: 'surface' | 'hero';
 }
 
-const { items, current } = Astro.props;
+const { items, current, tone = 'surface' } = Astro.props;
 ---
 
-<nav class="breadcrumb" aria-label="Migas de pan">
+<nav class:list={['breadcrumb', tone === 'hero' && 'breadcrumb--hero']} aria-label="Migas de pan">
   <ol>
     {
       items.map((item, i) => (
@@ -41,6 +43,10 @@ const { items, current } = Astro.props;
     padding-inline: max(1rem, var(--hdr-x));
     background: var(--color-surface);
     font-size: 0.875rem;
+  }
+
+  .breadcrumb--hero {
+    background: var(--color-hero-band);
   }
 
   ol {

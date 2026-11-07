@@ -6,6 +6,7 @@ order: 3
 cover: "../../assets/img/vinted-collections.png"
 coverAlt: "Tres pantallas móviles de la app de Vinted con la función de colecciones"
 coverWidth: 208
+home: true
 ---
 
 

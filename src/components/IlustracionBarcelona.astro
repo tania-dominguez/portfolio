@@ -1,5 +1,4 @@
 ---
-import Breadcrumb from './Breadcrumb.astro';
 import ZoomImage from './ZoomImage.astro';
 import Lightbox from './Lightbox.astro';
 import cartel from '../assets/img/ilustracion-barcelona/cartel.jpg';
@@ -37,14 +36,6 @@ const gallery = [
   },
 ];
 ---
-
-<Breadcrumb
-  items={[
-    { label: 'Home', href: '/' },
-    { label: 'Portfolio', href: '/portfolio/' },
-  ]}
-  current="Barcelona Modernista"
-/>
 
 <article class="ilustracion" aria-labelledby="ilustracion-title">
   <section class="hero" aria-label="Cartel y ficha del proyecto">
@@ -115,20 +106,27 @@ const gallery = [
   }
 
   .hero {
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
+    min-height: 80svh;
     padding: 20px 1rem;
     background: var(--color-surface);
   }
 
   .hero__inner {
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
   }
 
+  /* Escritorio: la sección ocupa el 80 % de la altura de la pantalla y el cartel se ajusta a ella
+     (ancho = alto disponible × 4/5), sin pasar de 642 px ni del 45 % del ancho. */
   .hero__art {
     flex: none;
-    width: clamp(17rem, 33.4vw, 40.125rem);
+    width: min(calc((80svh - 2.5rem) * 0.8), 40.125rem, 45vw);
   }
 
   .hero__info {
@@ -213,6 +211,8 @@ const gallery = [
 
   @media (max-width: 48rem) {
     .hero {
+      display: block;
+      min-height: 0;
       padding: 2.25rem 1rem 3rem;
     }
 
