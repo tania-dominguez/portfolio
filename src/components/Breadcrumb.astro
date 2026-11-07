@@ -1,0 +1,93 @@
+---
+interface Item {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items: Item[];
+  /** Página actual: no se ve (el diseño solo muestra los antecesores), pero los lectores de pantalla la anuncian. */
+  current?: string;
+}
+
+const { items, current } = Astro.props;
+---
+
+<nav class="breadcrumb" aria-label="Migas de pan">
+  <ol>
+    {
+      items.map((item, i) => (
+        <li>
+          <a href={item.href}>
+            {i === 0 && (
+              <svg class="breadcrumb__home" width="13" height="12" viewBox="0 0 13 12" aria-hidden="true" focusable="false">
+                <path d="M6.5 0 0 5.5h1.8V12h3.4V8h2.6v4h3.4V5.5H13L6.5 0Z" fill="currentColor" />
+              </svg>
+            )}
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+    {current && <li class="visually-hidden" aria-current="page">{current}</li>}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    min-height: 4.125rem; /* 66 px en el diseño de escritorio */
+    padding-inline: max(1rem, var(--hdr-x));
+    background: var(--color-surface);
+    font-size: 0.875rem;
+  }
+
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Separador: chevron de 24 px dibujado con CSS, sin marcado extra */
+  li + li::before {
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23120e03' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.375rem;
+    color: var(--color-ink);
+    line-height: 1.25rem;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .breadcrumb__home {
+    flex: none;
+  }
+
+  @media (max-width: 40rem) {
+    .breadcrumb {
+      min-height: 2.25rem; /* 36 px en el diseño móvil */
+      font-size: 0.75rem;
+    }
+  }
+</style>
