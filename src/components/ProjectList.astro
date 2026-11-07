@@ -2,7 +2,8 @@
 import { getCollection } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
 
-const proyectos = (await getCollection('proyectos', ({ data }) => !data.draft)).sort(
+// En la Home solo salen los proyectos marcados con `home: true`; /portfolio/ los muestra todos.
+const proyectos = (await getCollection('proyectos', ({ data }) => !data.draft && data.home)).sort(
   (a, b) => a.data.order - b.data.order,
 );
 ---

@@ -4,6 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import RevistaRsc from '../components/RevistaRsc.astro';
 import DesignSystem42 from '../components/DesignSystem42.astro';
 import VintedCaseStudy from '../components/VintedCaseStudy.astro';
+import IlustracionBarcelona from '../components/IlustracionBarcelona.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
 export async function getStaticPaths() {
   const proyectos = await getCollection('proyectos', ({ data }) => !data.draft);
@@ -12,15 +14,28 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+// Migas de pan de todos los proyectos: Home › Portfolio › Categoría (filtra /portfolio/)
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Portfolio', href: '/portfolio/' },
+  { label: entry.data.category, href: `/portfolio/?categoria=${encodeURIComponent(entry.data.category)}` },
+];
+
+// La banda del breadcrumb replica el fondo de la primera sección de cada proyecto
+const heroTone = new Set(['revista-rsc', '42-design-system']);
 ---
 
 <BaseLayout title={`${entry.data.title} | Tania Domínguez`} description={entry.data.description} image={entry.data.cover.src}>
+  <Breadcrumb items={crumbs} current={entry.data.title} tone={heroTone.has(entry.id) ? 'hero' : 'surface'} />
   {entry.id === 'revista-rsc' ? (
     <RevistaRsc />
   ) : entry.id === '42-design-system' ? (
     <DesignSystem42 />
   ) : entry.id === 'vinted-case-study' ? (
     <VintedCaseStudy />
+  ) : entry.id === 'ilustracion-barcelona-modernista' ? (
+    <IlustracionBarcelona />
   ) : (
     <article class="section container">
       <p>{entry.data.category}</p>

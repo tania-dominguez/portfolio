@@ -14,6 +14,8 @@ const proyectos = defineCollection({
       coverAlt: z.string(),
       /** Ancho (px CSS) con el que se muestra la portada en la tarjeta de la home */
       coverWidth: z.number().int().positive(),
+      /** Si es true, el proyecto sale como tarjeta en la Home. Todos salen siempre en /portfolio/. */
+      home: z.boolean().default(false),
       draft: z.boolean().default(false),
     }),
 });

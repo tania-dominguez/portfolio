@@ -6,6 +6,7 @@ order: 1
 cover: "../../assets/img/42ds.png"
 coverAlt: "Interfaz del 42DS Design System mostrada en un monitor de escritorio"
 coverWidth: 311
+home: true
 ---
 
 Contenido del caso de estudio pendiente de migrar desde WordPress.

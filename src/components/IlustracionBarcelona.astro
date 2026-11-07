@@ -1,0 +1,269 @@
+---
+import ZoomImage from './ZoomImage.astro';
+import Lightbox from './Lightbox.astro';
+import cartel from '../assets/img/ilustracion-barcelona/cartel.jpg';
+import cuadro from '../assets/img/ilustracion-barcelona/cuadro.jpg';
+import capaAzul from '../assets/img/ilustracion-barcelona/capa-azul.jpg';
+import capaOcre from '../assets/img/ilustracion-barcelona/capa-ocre.jpg';
+import totebag from '../assets/img/ilustracion-barcelona/totebag.jpg';
+import revista from '../assets/img/ilustracion-barcelona/revista.jpg';
+
+const gallery = [
+  {
+    image: cuadro,
+    alt: 'Cartel Barcelona Modernista enmarcado en negro y apoyado en una pared blanca',
+    caption: 'Cartel enmarcado',
+  },
+  {
+    image: capaAzul,
+    alt: 'Capa de tinta azul verdosa de la ilustración: musa, columnas, abanico solar y caballo alado',
+    caption: 'Capa de tinta azul',
+  },
+  {
+    image: capaOcre,
+    alt: 'Capa de tinta ocre de la ilustración: columnas, abanico solar, pentagramas y la silueta de la musa',
+    caption: 'Capa de tinta ocre',
+  },
+  {
+    image: totebag,
+    alt: 'Bolsa de tela con la ilustración impresa, colgada de un clavo sobre un fondo azul petróleo',
+    caption: 'Aplicación en tote bag',
+  },
+  {
+    image: revista,
+    alt: 'Publicaciones con la ilustración en la portada, apiladas sobre un fondo claro',
+    caption: 'Aplicación en portada de publicación',
+  },
+];
+---
+
+<article class="ilustracion" aria-labelledby="ilustracion-title">
+  <section class="hero" aria-label="Cartel y ficha del proyecto">
+    <div class="hero__inner">
+      <div class="hero__art">
+        <ZoomImage
+          image={cartel}
+          alt="Cartel Barcelona Modernista: una musa con violín frente a un abanico solar, entre columnas con capiteles florales y un caballo alado"
+          caption="Cartel Barcelona Modernista"
+          width={642}
+          widths={[272, 480, 642, 1080]}
+          sizes="(max-width: 48rem) 66vw, min(34vw, 642px)"
+          priority
+        />
+      </div>
+
+      <div class="hero__info">
+        <p class="hero__title">"Barcelona Modernista"</p>
+        <dl class="facts">
+          <div><dt>Proyecto:</dt> <dd>Cartel</dd></div>
+          <div><dt>Año:</dt> <dd>2025</dd></div>
+          <div><dt>Herramientas:</dt> <dd>Procreate</dd></div>
+          <div>
+            <dt>Licencia:</dt>
+            <dd>
+              <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es" target="_blank" rel="noopener noreferrer">CC BY – NC-ND<span class="visually-hidden"> 4.0 (se abre en una pestaña nueva)</span></a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Aplicaciones y capas de la ilustración">
+    <ul class="gallery" role="list">
+      {
+        gallery.map((item) => (
+          <li>
+            <ZoomImage
+              image={item.image}
+              alt={item.alt}
+              caption={item.caption}
+              width={216}
+              widths={[216, 432, 648]}
+              sizes="(max-width: 40rem) 48vw, min(19vw, 216px)"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="about" aria-labelledby="ilustracion-title">
+    <div class="about__inner">
+      <h1 id="ilustracion-title">Ilustración "Barcelona Modernista"</h1>
+      <p>Bajo la inspiración del modernismo catalán y el estilo Art Nouveau, esta ilustración del <strong>Palau de la Música Catalana</strong> captura de manera simplificada a dos tintas, la esencia vibrante y artística de este emblemático edificio. En el centro de la composición, una <strong>musa de la música</strong> reflejando las formas orgánicas y el dinamismo característicos del modernismo. A su lado, un <strong>caballo alado</strong>, evocando el espíritu elevado de la música y las artes.</p>
+      <p>Las icónicas <strong>columnas ornamentadas del Palau</strong> enmarcan la escena, reforzando el diálogo entre la arquitectura y la ilustración. Cada trazo y curva rinde homenaje a la estética de artistas como Lluís Domènech i Montaner, con líneas sinuosas y detalles florales que nos transportan a la espectacular Barcelona modernista.</p>
+    </div>
+  </section>
+</article>
+
+<Lightbox />
+
+<style>
+  /* Medidas del Figma (frames 1920w y 320w). El cartel crece con el viewport: 342 px a 1024, 642 px a 1920. */
+  .ilustracion {
+    color: var(--color-ink);
+  }
+
+  .hero {
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
+    min-height: 80svh;
+    padding: 20px 1rem;
+    background: var(--color-surface);
+  }
+
+  .hero__inner {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  /* Escritorio: la sección ocupa el 80 % de la altura de la pantalla y el cartel se ajusta a ella
+     (ancho = alto disponible × 4/5), sin pasar de 642 px ni del 45 % del ancho. */
+  .hero__art {
+    flex: none;
+    width: min(calc((80svh - 2.5rem) * 0.8), 40.125rem, 45vw);
+  }
+
+  .hero__info {
+    min-width: 0;
+  }
+
+  .hero__title {
+    max-width: none;
+    margin: 0 0 1.25rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  .facts {
+    display: grid;
+    gap: 0.8688rem;
+    margin: 0;
+  }
+
+  .facts > div {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.25em;
+    line-height: 1.5;
+  }
+
+  .facts dt {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .facts dd {
+    margin: 0;
+  }
+
+  .facts a {
+    color: var(--color-ink);
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 216px));
+    justify-content: center;
+    gap: 15px;
+    margin: 0;
+    padding: 10px 1rem;
+    list-style: none;
+  }
+
+  .gallery li {
+    min-width: 0;
+  }
+
+  .gallery :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .about {
+    padding-block: 54px;
+  }
+
+  .about__inner {
+    width: min(100% - 2rem, 58.875rem);
+    margin-inline: auto;
+  }
+
+  .about h1 {
+    margin: 0 0 1.25rem;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .about p {
+    max-width: none;
+    margin: 0 0 0.8994rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 48rem) {
+    .hero {
+      display: block;
+      min-height: 0;
+      padding: 2.25rem 1rem 3rem;
+    }
+
+    .hero__inner {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .hero__art {
+      width: min(65.4vw, 20rem);
+    }
+
+    .hero__info {
+      width: min(100%, 15.5rem);
+    }
+
+    .hero__title {
+      text-align: center;
+    }
+
+    .about {
+      padding-block: 1.2rem;
+    }
+
+    .about__inner {
+      width: min(100% - 5.375rem, 40rem);
+    }
+
+    .about h1 {
+      text-align: left;
+    }
+  }
+
+  /* Móvil: mosaico 3 + 2, como en el diseño de 320w */
+  @media (max-width: 40rem) {
+    .gallery {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px 15px;
+      padding-inline: 0.625rem;
+    }
+
+    .gallery li {
+      grid-column: span 2;
+    }
+
+    .gallery li:nth-child(n + 4) {
+      grid-column: span 3;
+    }
+
+    .gallery :global(img) {
+      aspect-ratio: 9 / 10;
+    }
+  }
+</style>

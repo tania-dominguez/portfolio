@@ -81,6 +81,10 @@ const filters = ['Todos', ...categories];
           ? `Sin proyectos en ${selected}.`
           : `${visible} ${visible === 1 ? 'proyecto' : 'proyectos'}${selected === 'Todos' ? '' : ` en ${selected}`}.`;
     });
+
+    // Enlace desde el breadcrumb de un proyecto: /portfolio/?categoria=Ilustración
+    const wanted = new URLSearchParams(location.search).get('categoria');
+    buttons.find((b) => b.dataset.filter === wanted)?.click();
   }
 </script>
 
